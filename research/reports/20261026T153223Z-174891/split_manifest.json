@@ -1,0 +1,83 @@
+{
+ "seed": 13,
+ "dev_fraction": 0.5,
+ "dev": [
+  "SYN-P01-1",
+  "SYN-P01-2",
+  "SYN-P01-3",
+  "SYN-P01-4",
+  "SYN-P01-5",
+  "SYN-P04-1",
+  "SYN-P04-2",
+  "SYN-P04-3",
+  "SYN-P04-4",
+  "SYN-P04-5",
+  "SYN-P05-1",
+  "SYN-P05-2",
+  "SYN-P05-3",
+  "SYN-P05-4",
+  "SYN-P05-5"
+ ],
+ "test": [
+  "SYN-P02-1",
+  "SYN-P02-2",
+  "SYN-P02-3",
+  "SYN-P02-4",
+  "SYN-P02-5",
+  "SYN-P03-1",
+  "SYN-P03-2",
+  "SYN-P03-3",
+  "SYN-P03-4",
+  "SYN-P03-5",
+  "SYN-P06-1",
+  "SYN-P06-2",
+  "SYN-P06-3",
+  "SYN-P06-4",
+  "SYN-P06-5"
+ ],
+ "groups": [
+  [
+   "SYN-P01-1",
+   "SYN-P01-2",
+   "SYN-P01-3",
+   "SYN-P01-4",
+   "SYN-P01-5"
+  ],
+  [
+   "SYN-P02-1",
+   "SYN-P02-2",
+   "SYN-P02-3",
+   "SYN-P02-4",
+   "SYN-P02-5"
+  ],
+  [
+   "SYN-P03-1",
+   "SYN-P03-2",
+   "SYN-P03-3",
+   "SYN-P03-4",
+   "SYN-P03-5"
+  ],
+  [
+   "SYN-P04-1",
+   "SYN-P04-2",
+   "SYN-P04-3",
+   "SYN-P04-4",
+   "SYN-P04-5"
+  ],
+  [
+   "SYN-P05-1",
+   "SYN-P05-2",
+   "SYN-P05-3",
+   "SYN-P05-4",
+   "SYN-P05-5"
+  ],
+  [
+   "SYN-P06-1",
+   "SYN-P06-2",
+   "SYN-P06-3",
+   "SYN-P06-4",
+   "SYN-P06-5"
+  ]
+ ],
+ "warning": null
+}

@@ -1,0 +1,18 @@
+{
+  "$comment": "Replace assembl-api.onrender.com with your Render service host. Proxying /api through Vercel keeps the session cookie first-party (SameSite=Lax). Vercel rewrites do not carry WebSockets, so build with VITE_SOCKET_TRANSPORTS=polling, or use a same-site API subdomain (docs/deployment.md).",
+  "rewrites": [
+    { "source": "/api/:path*", "destination": "https://assembl-api.onrender.com/api/:path*" },
+    { "source": "/socket.io/:path*", "destination": "https://assembl-api.onrender.com/socket.io/:path*" },
+    { "source": "/((?!api/|socket.io/|assets/).*)", "destination": "/index.html" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "X-Frame-Options", "value": "DENY" }
+      ]
+    }
+  ]
+}

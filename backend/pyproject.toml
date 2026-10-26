@@ -1,0 +1,44 @@
+[project]
+name = "assembl-backend"
+version = "0.1.0"
+description = "Assembl: team-aware candidate recommendation (FastAPI backend, scoring engine, research pipeline)"
+requires-python = ">=3.10"
+dependencies = [
+    "fastapi==0.115.6",
+    "uvicorn[standard]==0.32.1",
+    "motor==3.6.0",
+    "pymongo==4.9.2",
+    "python-socketio==5.11.4",
+    "pydantic==2.10.3",
+    "pydantic-settings==2.6.1",
+    "email-validator==2.2.0",
+    "numpy==2.2.6",
+    "scikit-learn==1.7.1",
+    "scipy==1.15.3",
+]
+
+[project.optional-dependencies]
+# Sentence-BERT encoder. Install torch from the CPU index first on small hosts:
+#   pip install torch==2.7.1 --index-url https://download.pytorch.org/whl/cpu
+ml = ["sentence-transformers==5.0.0"]
+# Optional: shared rate limiting / Socket.IO fan-out across several instances.
+redis = ["redis==5.2.1"]
+# In-memory MongoDB for tests and zero-install local demos (MONGODB_URL=memory://).
+dev = [
+    "pytest==8.3.4",
+    "pytest-asyncio==0.24.0",
+    "httpx==0.28.1",
+    "mongomock-motor==0.0.34",
+    "aiohttp==3.11.11",  # Socket.IO asyncio client in tests
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+markers = [
+    "sbert: requires the real Sentence-BERT model (skipped unless ASSEMBL_TEST_SBERT=1)",
+]
+
+[tool.setuptools.packages.find]
+include = ["app*"]

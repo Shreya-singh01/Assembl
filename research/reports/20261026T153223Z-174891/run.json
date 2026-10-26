@@ -1,0 +1,4519 @@
+{
+ "run_id": "20261026T153223Z-174891",
+ "created_at": "2026-10-26T15:32:23.890860+00:00",
+ "status": "pipeline-demonstration",
+ "is_research_evidence": false,
+ "warnings": [
+  "Dataset contains SYNTHETIC scenarios; results describe the pipeline, not real students.",
+  "Ratings are SIMULATED by a rule that overlaps with Assembl's features; metric differences are circular and are NOT evidence for or against any method.",
+  "No human suitability judgments: NDCG@5 and Precision@5 against real raters are not measured."
+ ],
+ "config": {
+  "k": 5,
+  "seed": 13,
+  "dev_fraction": 0.5,
+  "grid_step": 0.1,
+  "calibrate": true,
+  "encoder": "sentence-transformers/all-MiniLM-L6-v2",
+  "initial_weights": {
+   "sem": 0.3,
+   "gap": 0.35,
+   "role": 0.15,
+   "avail": 0.1,
+   "work": 0.1
+  },
+  "ndcg_gain": "linear (mean rating), log2 discount, condensed list for unjudged candidates",
+  "precision_threshold": 2.0
+ },
+ "dataset": {
+  "scenarios": 30,
+  "provenance": {
+   "synthetic": 30
+  },
+  "judgment_provenance": {
+   "simulated": 30
+  },
+  "judged_scenarios": 30,
+  "single_member_teams": 12,
+  "multi_member_teams": 18,
+  "excluded_by_eligibility": {
+   "SYN-P01-1": 0,
+   "SYN-P01-2": 0,
+   "SYN-P01-3": 0,
+   "SYN-P01-4": 6,
+   "SYN-P01-5": 24,
+   "SYN-P02-1": 0,
+   "SYN-P02-2": 0,
+   "SYN-P02-3": 0,
+   "SYN-P02-4": 3,
+   "SYN-P02-5": 23,
+   "SYN-P03-1": 0,
+   "SYN-P03-2": 0,
+   "SYN-P03-3": 0,
+   "SYN-P03-4": 6,
+   "SYN-P03-5": 24,
+   "SYN-P04-1": 0,
+   "SYN-P04-2": 0,
+   "SYN-P04-3": 0,
+   "SYN-P04-4": 5,
+   "SYN-P04-5": 24,
+   "SYN-P05-1": 0,
+   "SYN-P05-2": 0,
+   "SYN-P05-3": 0,
+   "SYN-P05-4": 7,
+   "SYN-P05-5": 23,
+   "SYN-P06-1": 0,
+   "SYN-P06-2": 0,
+   "SYN-P06-3": 0,
+   "SYN-P06-4": 7,
+   "SYN-P06-5": 22
+  }
+ },
+ "split": {
+  "seed": 13,
+  "dev_fraction": 0.5,
+  "dev": [
+   "SYN-P01-1",
+   "SYN-P01-2",
+   "SYN-P01-3",
+   "SYN-P01-4",
+   "SYN-P01-5",
+   "SYN-P04-1",
+   "SYN-P04-2",
+   "SYN-P04-3",
+   "SYN-P04-4",
+   "SYN-P04-5",
+   "SYN-P05-1",
+   "SYN-P05-2",
+   "SYN-P05-3",
+   "SYN-P05-4",
+   "SYN-P05-5"
+  ],
+  "test": [
+   "SYN-P02-1",
+   "SYN-P02-2",
+   "SYN-P02-3",
+   "SYN-P02-4",
+   "SYN-P02-5",
+   "SYN-P03-1",
+   "SYN-P03-2",
+   "SYN-P03-3",
+   "SYN-P03-4",
+   "SYN-P03-5",
+   "SYN-P06-1",
+   "SYN-P06-2",
+   "SYN-P06-3",
+   "SYN-P06-4",
+   "SYN-P06-5"
+  ],
+  "groups": [
+   [
+    "SYN-P01-1",
+    "SYN-P01-2",
+    "SYN-P01-3",
+    "SYN-P01-4",
+    "SYN-P01-5"
+   ],
+   [
+    "SYN-P02-1",
+    "SYN-P02-2",
+    "SYN-P02-3",
+    "SYN-P02-4",
+    "SYN-P02-5"
+   ],
+   [
+    "SYN-P03-1",
+    "SYN-P03-2",
+    "SYN-P03-3",
+    "SYN-P03-4",
+    "SYN-P03-5"
+   ],
+   [
+    "SYN-P04-1",
+    "SYN-P04-2",
+    "SYN-P04-3",
+    "SYN-P04-4",
+    "SYN-P04-5"
+   ],
+   [
+    "SYN-P05-1",
+    "SYN-P05-2",
+    "SYN-P05-3",
+    "SYN-P05-4",
+    "SYN-P05-5"
+   ],
+   [
+    "SYN-P06-1",
+    "SYN-P06-2",
+    "SYN-P06-3",
+    "SYN-P06-4",
+    "SYN-P06-5"
+   ]
+  ],
+  "warning": null
+ },
+ "calibration": {
+  "M5": {
+   "weights": {
+    "sem": 0.2,
+    "gap": 0.5,
+    "role": 0.1,
+    "avail": 0.1,
+    "work": 0.1
+   },
+   "dev_ndcg": 0.9009758286713119,
+   "evaluated": 1000,
+   "dev_scenarios_used": 13,
+   "step": 0.1,
+   "note": null,
+   "initial_weights": {
+    "sem": 0.30000000000000004,
+    "gap": 0.35000000000000003,
+    "role": 0.15000000000000002,
+    "avail": 0.10000000000000002,
+    "work": 0.10000000000000002
+   },
+   "used": "calibrated"
+  },
+  "M5 without sem": {
+   "weights": {
+    "gap": 0.5,
+    "role": 0.2,
+    "avail": 0.3,
+    "work": 0.0
+   },
+   "dev_ndcg": 0.8966772081817302,
+   "evaluated": 285,
+   "dev_scenarios_used": 13,
+   "step": 0.1,
+   "note": null,
+   "initial_weights": {
+    "gap": 0.5,
+    "role": 0.2142857142857143,
+    "avail": 0.14285714285714288,
+    "work": 0.14285714285714288
+   },
+   "used": "calibrated"
+  },
+  "M5 without gap": {
+   "weights": {
+    "sem": 0.0,
+    "role": 0.5,
+    "avail": 0.5,
+    "work": 0.0
+   },
+   "dev_ndcg": 0.872690200883352,
+   "evaluated": 285,
+   "dev_scenarios_used": 13,
+   "step": 0.1,
+   "note": null,
+   "initial_weights": {
+    "sem": 0.46153846153846156,
+    "role": 0.23076923076923078,
+    "avail": 0.15384615384615388,
+    "work": 0.15384615384615388
+   },
+   "used": "calibrated"
+  },
+  "M5 without role": {
+   "weights": {
+    "sem": 0.4,
+    "gap": 0.4,
+    "avail": 0.1,
+    "work": 0.1
+   },
+   "dev_ndcg": 0.7922671774773468,
+   "evaluated": 285,
+   "dev_scenarios_used": 13,
+   "step": 0.1,
+   "note": null,
+   "initial_weights": {
+    "sem": 0.35294117647058826,
+    "gap": 0.411764705882353,
+    "avail": 0.11764705882352944,
+    "work": 0.11764705882352944
+   },
+   "used": "calibrated"
+  },
+  "M5 without avail": {
+   "weights": {
+    "sem": 0.1,
+    "gap": 0.6,
+    "role": 0.2,
+    "work": 0.1
+   },
+   "dev_ndcg": 0.8862379204078115,
+   "evaluated": 286,
+   "dev_scenarios_used": 13,
+   "step": 0.1,
+   "note": null,
+   "initial_weights": {
+    "sem": 0.33333333333333337,
+    "gap": 0.3888888888888889,
+    "role": 0.16666666666666669,
+    "work": 0.11111111111111113
+   },
+   "used": "calibrated"
+  },
+  "M5 without work": {
+   "weights": {
+    "sem": 0.0,
+    "gap": 0.5,
+    "role": 0.2,
+    "avail": 0.3
+   },
+   "dev_ndcg": 0.8966772081817302,
+   "evaluated": 285,
+   "dev_scenarios_used": 13,
+   "step": 0.1,
+   "note": null,
+   "initial_weights": {
+    "sem": 0.33333333333333337,
+    "gap": 0.3888888888888889,
+    "role": 0.16666666666666669,
+    "avail": 0.11111111111111113
+   },
+   "used": "calibrated"
+  }
+ },
+ "method_names": {
+  "M1": "Skill overlap",
+  "M2": "TF-IDF",
+  "M3": "Semantic only",
+  "M4": "Semantic + skill gap",
+  "M5": "Full Assembl",
+  "M5 (initial weights)": "Full Assembl, paper's initial weights"
+ },
+ "results": {
+  "M1": {
+   "ndcg@5": {
+    "value": 0.7507117114701832,
+    "n": 14,
+    "status": "measured"
+   },
+   "precision@5": {
+    "value": 0.12857142857142856,
+    "n": 14,
+    "status": "measured"
+   },
+   "added_coverage@5": {
+    "value": 0.1530952380952381,
+    "n": 14,
+    "status": "measured"
+   },
+   "constraint_violations@5": {
+    "value": 0.48571428571428577,
+    "n": 14,
+    "status": "measured"
+   },
+   "judged@5": {
+    "value": 1.0,
+    "n": 14,
+    "status": "measured"
+   },
+   "mandatory_violations": 0
+  },
+  "M2": {
+   "ndcg@5": {
+    "value": 0.7438293359599436,
+    "n": 14,
+    "status": "measured"
+   },
+   "precision@5": {
+    "value": 0.12857142857142856,
+    "n": 14,
+    "status": "measured"
+   },
+   "added_coverage@5": {
+    "value": 0.13164502164502162,
+    "n": 14,
+    "status": "measured"
+   },
+   "constraint_violations@5": {
+    "value": 0.45714285714285724,
+    "n": 14,
+    "status": "measured"
+   },
+   "judged@5": {
+    "value": 1.0,
+    "n": 14,
+    "status": "measured"
+   },
+   "mandatory_violations": 0
+  },
+  "M3": {
+   "ndcg@5": {
+    "value": 0.8175419852307302,
+    "n": 14,
+    "status": "measured"
+   },
+   "precision@5": {
+    "value": 0.14285714285714285,
+    "n": 14,
+    "status": "measured"
+   },
+   "added_coverage@5": {
+    "value": 0.13004329004329,
+    "n": 14,
+    "status": "measured"
+   },
+   "constraint_violations@5": {
+    "value": 0.4857142857142859,
+    "n": 14,
+    "status": "measured"
+   },
+   "judged@5": {
+    "value": 1.0,
+    "n": 14,
+    "status": "measured"
+   },
+   "mandatory_violations": 0
+  },
+  "M4": {
+   "ndcg@5": {
+    "value": 0.8348755963334059,
+    "n": 14,
+    "status": "measured"
+   },
+   "precision@5": {
+    "value": 0.14285714285714285,
+    "n": 14,
+    "status": "measured"
+   },
+   "added_coverage@5": {
+    "value": 0.1628571428571428,
+    "n": 14,
+    "status": "measured"
+   },
+   "constraint_violations@5": {
+    "value": 0.48571428571428577,
+    "n": 14,
+    "status": "measured"
+   },
+   "judged@5": {
+    "value": 1.0,
+    "n": 14,
+    "status": "measured"
+   },
+   "mandatory_violations": 0
+  },
+  "M5": {
+   "ndcg@5": {
+    "value": 0.9113329349622754,
+    "n": 14,
+    "status": "measured"
+   },
+   "precision@5": {
+    "value": 0.14285714285714285,
+    "n": 14,
+    "status": "measured"
+   },
+   "added_coverage@5": {
+    "value": 0.15857142857142856,
+    "n": 14,
+    "status": "measured"
+   },
+   "constraint_violations@5": {
+    "value": 0.4,
+    "n": 14,
+    "status": "measured"
+   },
+   "judged@5": {
+    "value": 1.0,
+    "n": 14,
+    "status": "measured"
+   },
+   "mandatory_violations": 0
+  },
+  "M5 (initial weights)": {
+   "ndcg@5": {
+    "value": 0.9027068648473079,
+    "n": 14,
+    "status": "measured"
+   },
+   "precision@5": {
+    "value": 0.14285714285714285,
+    "n": 14,
+    "status": "measured"
+   },
+   "added_coverage@5": {
+    "value": 0.1387012987012987,
+    "n": 14,
+    "status": "measured"
+   },
+   "constraint_violations@5": {
+    "value": 0.34285714285714297,
+    "n": 14,
+    "status": "measured"
+   },
+   "judged@5": {
+    "value": 1.0,
+    "n": 14,
+    "status": "measured"
+   },
+   "mandatory_violations": 0
+  }
+ },
+ "ablations": {
+  "M5": {
+   "ndcg@5": {
+    "value": 0.9113329349622754,
+    "n": 14,
+    "status": "measured"
+   },
+   "precision@5": {
+    "value": 0.14285714285714285,
+    "n": 14,
+    "status": "measured"
+   },
+   "added_coverage@5": {
+    "value": 0.15857142857142856,
+    "n": 14,
+    "status": "measured"
+   },
+   "constraint_violations@5": {
+    "value": 0.4,
+    "n": 14,
+    "status": "measured"
+   },
+   "judged@5": {
+    "value": 1.0,
+    "n": 14,
+    "status": "measured"
+   },
+   "mandatory_violations": 0
+  },
+  "M5 without sem": {
+   "ndcg@5": {
+    "value": 0.9125824389770807,
+    "n": 14,
+    "status": "measured"
+   },
+   "precision@5": {
+    "value": 0.15714285714285717,
+    "n": 14,
+    "status": "measured"
+   },
+   "added_coverage@5": {
+    "value": 0.13441558441558438,
+    "n": 14,
+    "status": "measured"
+   },
+   "constraint_violations@5": {
+    "value": 0.3571428571428572,
+    "n": 14,
+    "status": "measured"
+   },
+   "judged@5": {
+    "value": 1.0,
+    "n": 14,
+    "status": "measured"
+   },
+   "mandatory_violations": 0
+  },
+  "M5 without gap": {
+   "ndcg@5": {
+    "value": 0.8793709013845129,
+    "n": 14,
+    "status": "measured"
+   },
+   "precision@5": {
+    "value": 0.14285714285714285,
+    "n": 14,
+    "status": "measured"
+   },
+   "added_coverage@5": {
+    "value": 0.10051948051948052,
+    "n": 14,
+    "status": "measured"
+   },
+   "constraint_violations@5": {
+    "value": 0.2857142857142857,
+    "n": 14,
+    "status": "measured"
+   },
+   "judged@5": {
+    "value": 1.0,
+    "n": 14,
+    "status": "measured"
+   },
+   "mandatory_violations": 0
+  },
+  "M5 without role": {
+   "ndcg@5": {
+    "value": 0.8491247364327277,
+    "n": 14,
+    "status": "measured"
+   },
+   "precision@5": {
+    "value": 0.14285714285714285,
+    "n": 14,
+    "status": "measured"
+   },
+   "added_coverage@5": {
+    "value": 0.16025974025974024,
+    "n": 14,
+    "status": "measured"
+   },
+   "constraint_violations@5": {
+    "value": 0.47142857142857153,
+    "n": 14,
+    "status": "measured"
+   },
+   "judged@5": {
+    "value": 1.0,
+    "n": 14,
+    "status": "measured"
+   },
+   "mandatory_violations": 0
+  },
+  "M5 without avail": {
+   "ndcg@5": {
+    "value": 0.8887721740764621,
+    "n": 14,
+    "status": "measured"
+   },
+   "precision@5": {
+    "value": 0.12857142857142856,
+    "n": 14,
+    "status": "measured"
+   },
+   "added_coverage@5": {
+    "value": 0.14095238095238094,
+    "n": 14,
+    "status": "measured"
+   },
+   "constraint_violations@5": {
+    "value": 0.3428571428571429,
+    "n": 14,
+    "status": "measured"
+   },
+   "judged@5": {
+    "value": 1.0,
+    "n": 14,
+    "status": "measured"
+   },
+   "mandatory_violations": 0
+  },
+  "M5 without work": {
+   "ndcg@5": {
+    "value": 0.9125824389770807,
+    "n": 14,
+    "status": "measured"
+   },
+   "precision@5": {
+    "value": 0.15714285714285717,
+    "n": 14,
+    "status": "measured"
+   },
+   "added_coverage@5": {
+    "value": 0.13441558441558438,
+    "n": 14,
+    "status": "measured"
+   },
+   "constraint_violations@5": {
+    "value": 0.3571428571428572,
+    "n": 14,
+    "status": "measured"
+   },
+   "judged@5": {
+    "value": 1.0,
+    "n": 14,
+    "status": "measured"
+   },
+   "mandatory_violations": 0
+  }
+ },
+ "comparisons": {
+  "RQ2: M3 vs M4": {
+   "n": 14,
+   "n_nonzero": 11,
+   "mean_difference": 0.017333611102675568,
+   "median_difference": 0.0005474556850718626,
+   "statistic": 22.0,
+   "p_value": 0.365234375,
+   "rank_biserial": 0.3333333333333333,
+   "note": null
+  },
+  "RQ3: M4 vs M5": {
+   "n": 14,
+   "n_nonzero": 10,
+   "mean_difference": 0.07645733862886972,
+   "median_difference": 0.01403249911261506,
+   "statistic": 4.0,
+   "p_value": 0.013671875,
+   "rank_biserial": 0.8545454545454545,
+   "note": null
+  },
+  "M1 vs M5": {
+   "n": 14,
+   "n_nonzero": 12,
+   "mean_difference": 0.16062122349209232,
+   "median_difference": 0.12884918068161944,
+   "statistic": 0.0,
+   "p_value": 0.00048828125,
+   "rank_biserial": 1.0,
+   "note": null
+  },
+  "M2 vs M5": {
+   "n": 14,
+   "n_nonzero": 12,
+   "mean_difference": 0.16750359900233208,
+   "median_difference": 0.1489974796949125,
+   "statistic": 3.0,
+   "p_value": 0.00244140625,
+   "rank_biserial": 0.9230769230769231,
+   "note": null
+  },
+  "M3 vs M5": {
+   "n": 14,
+   "n_nonzero": 11,
+   "mean_difference": 0.09379094973154531,
+   "median_difference": 0.11802432187681566,
+   "statistic": 6.0,
+   "p_value": 0.013671875,
+   "rank_biserial": 0.8181818181818182,
+   "note": null
+  },
+  "M5 vs M5 without sem": {
+   "n": 14,
+   "n_nonzero": 12,
+   "mean_difference": 0.0012495040148049871,
+   "median_difference": 0.0,
+   "statistic": 37.0,
+   "p_value": 0.90966796875,
+   "rank_biserial": 0.05128205128205128,
+   "note": null
+  },
+  "M5 vs M5 without gap": {
+   "n": 14,
+   "n_nonzero": 11,
+   "mean_difference": -0.03196203357776266,
+   "median_difference": -0.011033473814836436,
+   "statistic": 20.0,
+   "p_value": 0.2783203125,
+   "rank_biserial": -0.3939393939393939,
+   "note": null
+  },
+  "M5 vs M5 without role": {
+   "n": 14,
+   "n_nonzero": 9,
+   "mean_difference": -0.06220819852954781,
+   "median_difference": -0.001558918757413763,
+   "statistic": 4.0,
+   "p_value": 0.02734375,
+   "rank_biserial": -0.8222222222222222,
+   "note": "only 9 non-zero pairs; the test has very little power"
+  },
+  "M5 vs M5 without avail": {
+   "n": 14,
+   "n_nonzero": 10,
+   "mean_difference": -0.022560760885813286,
+   "median_difference": 0.0,
+   "statistic": 15.0,
+   "p_value": 0.232421875,
+   "rank_biserial": -0.45454545454545453,
+   "note": null
+  },
+  "M5 vs M5 without work": {
+   "n": 14,
+   "n_nonzero": 12,
+   "mean_difference": 0.0012495040148049871,
+   "median_difference": 0.0,
+   "statistic": 37.0,
+   "p_value": 0.90966796875,
+   "rank_biserial": 0.05128205128205128,
+   "note": null
+  }
+ },
+ "per_scenario": {
+  "SYN-P02-1": {
+   "M1": {
+    "ndcg@5": 0.735188681848359,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.2545454545454545,
+    "constraint_violations@5": 0.8,
+    "violation_kinds": {
+     "prefers_no_vacant_role": 4,
+     "incompatible_work_mode": 2
+    },
+    "mandatory_violations": 0
+   },
+   "M2": {
+    "ndcg@5": 0.6226307606667497,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.21818181818181817,
+    "constraint_violations@5": 1.0,
+    "violation_kinds": {
+     "prefers_no_vacant_role": 5,
+     "incompatible_work_mode": 2
+    },
+    "mandatory_violations": 0
+   },
+   "M3": {
+    "ndcg@5": 0.9121236913658769,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.14545454545454545,
+    "constraint_violations@5": 1.0,
+    "violation_kinds": {
+     "incompatible_work_mode": 4,
+     "prefers_no_vacant_role": 3
+    },
+    "mandatory_violations": 0
+   },
+   "M4": {
+    "ndcg@5": 0.8173001903719191,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.23636363636363633,
+    "constraint_violations@5": 1.0,
+    "violation_kinds": {
+     "prefers_no_vacant_role": 4,
+     "incompatible_work_mode": 3
+    },
+    "mandatory_violations": 0
+   },
+   "M5": {
+    "ndcg@5": 0.850630211423945,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.23636363636363633,
+    "constraint_violations@5": 0.8,
+    "violation_kinds": {
+     "prefers_no_vacant_role": 3,
+     "incompatible_work_mode": 3
+    },
+    "mandatory_violations": 0
+   },
+   "M5 (initial weights)": {
+    "ndcg@5": 0.7808118874324332,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.12727272727272726,
+    "constraint_violations@5": 0.6,
+    "violation_kinds": {
+     "incompatible_work_mode": 2,
+     "prefers_no_vacant_role": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M5 without sem": {
+    "ndcg@5": 0.7706087530243585,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.12727272727272726,
+    "constraint_violations@5": 0.6,
+    "violation_kinds": {
+     "incompatible_work_mode": 2,
+     "prefers_no_vacant_role": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M5 without gap": {
+    "ndcg@5": 0.6659545121576759,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.05454545454545454,
+    "constraint_violations@5": 0.4,
+    "violation_kinds": {
+     "incompatible_work_mode": 2
+    },
+    "mandatory_violations": 0
+   },
+   "M5 without role": {
+    "ndcg@5": 0.8173001903719191,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.23636363636363633,
+    "constraint_violations@5": 1.0,
+    "violation_kinds": {
+     "prefers_no_vacant_role": 4,
+     "incompatible_work_mode": 3
+    },
+    "mandatory_violations": 0
+   },
+   "M5 without avail": {
+    "ndcg@5": 0.7808118874324332,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.12727272727272726,
+    "constraint_violations@5": 0.6,
+    "violation_kinds": {
+     "incompatible_work_mode": 2,
+     "prefers_no_vacant_role": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M5 without work": {
+    "ndcg@5": 0.7706087530243585,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.12727272727272726,
+    "constraint_violations@5": 0.6,
+    "violation_kinds": {
+     "incompatible_work_mode": 2,
+     "prefers_no_vacant_role": 1
+    },
+    "mandatory_violations": 0
+   }
+  },
+  "SYN-P02-2": {
+   "M1": {
+    "ndcg@5": 0.7787095464024896,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.21818181818181812,
+    "constraint_violations@5": 0.8,
+    "violation_kinds": {
+     "prefers_no_vacant_role": 3,
+     "incompatible_work_mode": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M2": {
+    "ndcg@5": 0.7388909680648541,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.1818181818181818,
+    "constraint_violations@5": 0.8,
+    "violation_kinds": {
+     "prefers_no_vacant_role": 3,
+     "incompatible_work_mode": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M3": {
+    "ndcg@5": 0.7283130800405418,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.14545454545454545,
+    "constraint_violations@5": 0.8,
+    "violation_kinds": {
+     "incompatible_work_mode": 2,
+     "prefers_no_vacant_role": 2
+    },
+    "mandatory_violations": 0
+   },
+   "M4": {
+    "ndcg@5": 0.7288605357256137,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.21818181818181812,
+    "constraint_violations@5": 0.8,
+    "violation_kinds": {
+     "prefers_no_vacant_role": 3,
+     "incompatible_work_mode": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M5": {
+    "ndcg@5": 0.9237062692623436,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.21818181818181812,
+    "constraint_violations@5": 0.6,
+    "violation_kinds": {
+     "prefers_no_vacant_role": 2,
+     "incompatible_work_mode": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M5 (initial weights)": {
+    "ndcg@5": 0.9131283812380314,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.18181818181818182,
+    "constraint_violations@5": 0.6,
+    "violation_kinds": {
+     "prefers_no_vacant_role": 1,
+     "incompatible_work_mode": 2
+    },
+    "mandatory_violations": 0
+   },
+   "M5 without sem": {
+    "ndcg@5": 0.9894221119756879,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.19999999999999998,
+    "constraint_violations@5": 0.6,
+    "violation_kinds": {
+     "incompatible_work_mode": 1,
+     "prefers_no_vacant_role": 2
+    },
+    "mandatory_violations": 0
+   },
+   "M5 without gap": {
+    "ndcg@5": 0.894191825352085,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.0909090909090909,
+    "constraint_violations@5": 0.4,
+    "violation_kinds": {
+     "incompatible_work_mode": 2
+    },
+    "mandatory_violations": 0
+   },
+   "M5 without role": {
+    "ndcg@5": 0.787889423546131,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.23636363636363633,
+    "constraint_violations@5": 0.6,
+    "violation_kinds": {
+     "prefers_no_vacant_role": 3
+    },
+    "mandatory_violations": 0
+   },
+   "M5 without avail": {
+    "ndcg@5": 0.8178980946144284,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.1818181818181818,
+    "constraint_violations@5": 0.4,
+    "violation_kinds": {
+     "prefers_no_vacant_role": 1,
+     "incompatible_work_mode": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M5 without work": {
+    "ndcg@5": 0.9894221119756879,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.19999999999999998,
+    "constraint_violations@5": 0.6,
+    "violation_kinds": {
+     "incompatible_work_mode": 1,
+     "prefers_no_vacant_role": 2
+    },
+    "mandatory_violations": 0
+   }
+  },
+  "SYN-P02-3": {
+   "M1": {
+    "ndcg@5": 0.3311901816517684,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.12727272727272726,
+    "constraint_violations@5": 0.6,
+    "violation_kinds": {
+     "incompatible_work_mode": 1,
+     "prefers_no_vacant_role": 2
+    },
+    "mandatory_violations": 0
+   },
+   "M2": {
+    "ndcg@5": 0.34013273281322476,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.10909090909090909,
+    "constraint_violations@5": 0.6,
+    "violation_kinds": {
+     "prefers_no_vacant_role": 2,
+     "incompatible_work_mode": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M3": {
+    "ndcg@5": 0.3773171742772665,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.10909090909090909,
+    "constraint_violations@5": 0.6,
+    "violation_kinds": {
+     "prefers_no_vacant_role": 2,
+     "incompatible_work_mode": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M4": {
+    "ndcg@5": 0.5085682022725383,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.14545454545454545,
+    "constraint_violations@5": 0.4,
+    "violation_kinds": {
+     "incompatible_work_mode": 1,
+     "prefers_no_vacant_role": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M5": {
+    "ndcg@5": 0.7531260362568528,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.16363636363636364,
+    "constraint_violations@5": 0.4,
+    "violation_kinds": {
+     "incompatible_work_mode": 2
+    },
+    "mandatory_violations": 0
+   },
+   "M5 (initial weights)": {
+    "ndcg@5": 0.7203132792580349,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.14545454545454545,
+    "constraint_violations@5": 0.4,
+    "violation_kinds": {
+     "incompatible_work_mode": 2
+    },
+    "mandatory_violations": 0
+   },
+   "M5 without sem": {
+    "ndcg@5": 0.9235733464924455,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.14545454545454545,
+    "constraint_violations@5": 0.6,
+    "violation_kinds": {
+     "incompatible_work_mode": 3
+    },
+    "mandatory_violations": 0
+   },
+   "M5 without gap": {
+    "ndcg@5": 0.9158348186461156,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.10909090909090909,
+    "constraint_violations@5": 0.6,
+    "violation_kinds": {
+     "incompatible_work_mode": 3
+    },
+    "mandatory_violations": 0
+   },
+   "M5 without role": {
+    "ndcg@5": 0.29621454732193453,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.12727272727272726,
+    "constraint_violations@5": 0.6,
+    "violation_kinds": {
+     "prefers_no_vacant_role": 2,
+     "incompatible_work_mode": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M5 without avail": {
+    "ndcg@5": 0.7536295647354516,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.14545454545454545,
+    "constraint_violations@5": 0.4,
+    "violation_kinds": {
+     "incompatible_work_mode": 2
+    },
+    "mandatory_violations": 0
+   },
+   "M5 without work": {
+    "ndcg@5": 0.9235733464924455,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.14545454545454545,
+    "constraint_violations@5": 0.6,
+    "violation_kinds": {
+     "incompatible_work_mode": 3
+    },
+    "mandatory_violations": 0
+   }
+  },
+  "SYN-P02-4": {
+   "M1": {
+    "ndcg@5": 0.5517264143494021,
+    "precision@5": 0.2,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.21818181818181817,
+    "constraint_violations@5": 0.8,
+    "violation_kinds": {
+     "incompatible_work_mode": 1,
+     "prefers_no_vacant_role": 3,
+     "zero_shared_availability": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M2": {
+    "ndcg@5": 0.7584317358010626,
+    "precision@5": 0.2,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.14545454545454545,
+    "constraint_violations@5": 0.6,
+    "violation_kinds": {
+     "prefers_no_vacant_role": 2,
+     "zero_shared_availability": 1,
+     "incompatible_work_mode": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M3": {
+    "ndcg@5": 0.6339501463638296,
+    "precision@5": 0.2,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.14545454545454545,
+    "constraint_violations@5": 1.0,
+    "violation_kinds": {
+     "zero_shared_availability": 1,
+     "prefers_no_vacant_role": 4,
+     "incompatible_work_mode": 2
+    },
+    "mandatory_violations": 0
+   },
+   "M4": {
+    "ndcg@5": 0.6337014436782997,
+    "precision@5": 0.2,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.21818181818181817,
+    "constraint_violations@5": 0.8,
+    "violation_kinds": {
+     "zero_shared_availability": 1,
+     "incompatible_work_mode": 1,
+     "prefers_no_vacant_role": 3
+    },
+    "mandatory_violations": 0
+   },
+   "M5": {
+    "ndcg@5": 0.9074292154959751,
+    "precision@5": 0.2,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.19999999999999998,
+    "constraint_violations@5": 1.0,
+    "violation_kinds": {
+     "prefers_no_vacant_role": 3,
+     "incompatible_work_mode": 2,
+     "zero_shared_availability": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M5 (initial weights)": {
+    "ndcg@5": 0.7763364525780139,
+    "precision@5": 0.2,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.14545454545454545,
+    "constraint_violations@5": 0.8,
+    "violation_kinds": {
+     "incompatible_work_mode": 1,
+     "zero_shared_availability": 2,
+     "prefers_no_vacant_role": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M5 without sem": {
+    "ndcg@5": 0.676208003786635,
+    "precision@5": 0.2,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.12727272727272726,
+    "constraint_violations@5": 0.8,
+    "violation_kinds": {
+     "incompatible_work_mode": 2,
+     "prefers_no_vacant_role": 2
+    },
+    "mandatory_violations": 0
+   },
+   "M5 without gap": {
+    "ndcg@5": 0.6888577727087869,
+    "precision@5": 0.2,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.0909090909090909,
+    "constraint_violations@5": 0.6,
+    "violation_kinds": {
+     "incompatible_work_mode": 2,
+     "prefers_no_vacant_role": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M5 without role": {
+    "ndcg@5": 0.7913265710709311,
+    "precision@5": 0.2,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.1818181818181818,
+    "constraint_violations@5": 1.0,
+    "violation_kinds": {
+     "prefers_no_vacant_role": 4,
+     "incompatible_work_mode": 1,
+     "zero_shared_availability": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M5 without avail": {
+    "ndcg@5": 0.7406898154400248,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.16363636363636364,
+    "constraint_violations@5": 0.8,
+    "violation_kinds": {
+     "zero_shared_availability": 3,
+     "incompatible_work_mode": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M5 without work": {
+    "ndcg@5": 0.676208003786635,
+    "precision@5": 0.2,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.12727272727272726,
+    "constraint_violations@5": 0.8,
+    "violation_kinds": {
+     "incompatible_work_mode": 2,
+     "prefers_no_vacant_role": 2
+    },
+    "mandatory_violations": 0
+   }
+  },
+  "SYN-P02-5": {
+   "M1": {
+    "ndcg@5": 1.0,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.1818181818181818,
+    "constraint_violations@5": 1.0,
+    "violation_kinds": {
+     "prefers_no_vacant_role": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M2": {
+    "ndcg@5": 1.0,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.1818181818181818,
+    "constraint_violations@5": 1.0,
+    "violation_kinds": {
+     "prefers_no_vacant_role": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M3": {
+    "ndcg@5": 1.0,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.1818181818181818,
+    "constraint_violations@5": 1.0,
+    "violation_kinds": {
+     "prefers_no_vacant_role": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M4": {
+    "ndcg@5": 1.0,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.1818181818181818,
+    "constraint_violations@5": 1.0,
+    "violation_kinds": {
+     "prefers_no_vacant_role": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M5": {
+    "ndcg@5": 1.0,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.1818181818181818,
+    "constraint_violations@5": 1.0,
+    "violation_kinds": {
+     "prefers_no_vacant_role": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M5 (initial weights)": {
+    "ndcg@5": 1.0,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.1818181818181818,
+    "constraint_violations@5": 1.0,
+    "violation_kinds": {
+     "prefers_no_vacant_role": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M5 without sem": {
+    "ndcg@5": 1.0,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.1818181818181818,
+    "constraint_violations@5": 1.0,
+    "violation_kinds": {
+     "prefers_no_vacant_role": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M5 without gap": {
+    "ndcg@5": 1.0,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.1818181818181818,
+    "constraint_violations@5": 1.0,
+    "violation_kinds": {
+     "prefers_no_vacant_role": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M5 without role": {
+    "ndcg@5": 1.0,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.1818181818181818,
+    "constraint_violations@5": 1.0,
+    "violation_kinds": {
+     "prefers_no_vacant_role": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M5 without avail": {
+    "ndcg@5": 1.0,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.1818181818181818,
+    "constraint_violations@5": 1.0,
+    "violation_kinds": {
+     "prefers_no_vacant_role": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M5 without work": {
+    "ndcg@5": 1.0,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.1818181818181818,
+    "constraint_violations@5": 1.0,
+    "violation_kinds": {
+     "prefers_no_vacant_role": 1
+    },
+    "mandatory_violations": 0
+   }
+  },
+  "SYN-P03-1": {
+   "M1": {
+    "ndcg@5": 0.7156060672413311,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.13999999999999996,
+    "constraint_violations@5": 0.2,
+    "violation_kinds": {
+     "prefers_no_vacant_role": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M2": {
+    "ndcg@5": 0.888339840617936,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.13999999999999996,
+    "constraint_violations@5": 0.2,
+    "violation_kinds": {
+     "prefers_no_vacant_role": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M3": {
+    "ndcg@5": 0.8166706431261342,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.07999999999999999,
+    "constraint_violations@5": 0.2,
+    "violation_kinds": {
+     "prefers_no_vacant_role": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M4": {
+    "ndcg@5": 0.8768618059876677,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.13999999999999996,
+    "constraint_violations@5": 0.2,
+    "violation_kinds": {
+     "prefers_no_vacant_role": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M5": {
+    "ndcg@5": 0.8784207247450815,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.11999999999999997,
+    "constraint_violations@5": 0.0,
+    "violation_kinds": {},
+    "mandatory_violations": 0
+   },
+   "M5 (initial weights)": {
+    "ndcg@5": 0.8784207247450815,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.11999999999999997,
+    "constraint_violations@5": 0.0,
+    "violation_kinds": {},
+    "mandatory_violations": 0
+   },
+   "M5 without sem": {
+    "ndcg@5": 0.912334405914818,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.11999999999999997,
+    "constraint_violations@5": 0.0,
+    "violation_kinds": {},
+    "mandatory_violations": 0
+   },
+   "M5 without gap": {
+    "ndcg@5": 0.8406652084230162,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.07999999999999999,
+    "constraint_violations@5": 0.0,
+    "violation_kinds": {},
+    "mandatory_violations": 0
+   },
+   "M5 without role": {
+    "ndcg@5": 0.8768618059876677,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.13999999999999996,
+    "constraint_violations@5": 0.2,
+    "violation_kinds": {
+     "prefers_no_vacant_role": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M5 without avail": {
+    "ndcg@5": 0.8784207247450815,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.11999999999999997,
+    "constraint_violations@5": 0.0,
+    "violation_kinds": {},
+    "mandatory_violations": 0
+   },
+   "M5 without work": {
+    "ndcg@5": 0.912334405914818,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.11999999999999997,
+    "constraint_violations@5": 0.0,
+    "violation_kinds": {},
+    "mandatory_violations": 0
+   }
+  },
+  "SYN-P03-2": {
+   "M1": {
+    "ndcg@5": 0.7214521483318601,
+    "precision@5": 0.2,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.10999999999999996,
+    "constraint_violations@5": 0.4,
+    "violation_kinds": {
+     "zero_shared_availability": 1,
+     "prefers_no_vacant_role": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M2": {
+    "ndcg@5": 0.7797158546745346,
+    "precision@5": 0.4,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.07999999999999999,
+    "constraint_violations@5": 0.2,
+    "violation_kinds": {
+     "zero_shared_availability": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M3": {
+    "ndcg@5": 0.725207367177223,
+    "precision@5": 0.2,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.09999999999999998,
+    "constraint_violations@5": 0.4,
+    "violation_kinds": {
+     "zero_shared_availability": 1,
+     "prefers_no_vacant_role": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M4": {
+    "ndcg@5": 0.8645300487335614,
+    "precision@5": 0.2,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.11999999999999997,
+    "constraint_violations@5": 0.4,
+    "violation_kinds": {
+     "zero_shared_availability": 1,
+     "prefers_no_vacant_role": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M5": {
+    "ndcg@5": 0.8503013290134795,
+    "precision@5": 0.2,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.09999999999999998,
+    "constraint_violations@5": 0.2,
+    "violation_kinds": {
+     "zero_shared_availability": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M5 (initial weights)": {
+    "ndcg@5": 0.8565920467504337,
+    "precision@5": 0.2,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.09999999999999998,
+    "constraint_violations@5": 0.2,
+    "violation_kinds": {
+     "zero_shared_availability": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M5 without sem": {
+    "ndcg@5": 0.9552059062405647,
+    "precision@5": 0.4,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.039999999999999994,
+    "constraint_violations@5": 0.0,
+    "violation_kinds": {},
+    "mandatory_violations": 0
+   },
+   "M5 without gap": {
+    "ndcg@5": 0.9552059062405647,
+    "precision@5": 0.4,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.039999999999999994,
+    "constraint_violations@5": 0.0,
+    "violation_kinds": {},
+    "mandatory_violations": 0
+   },
+   "M5 without role": {
+    "ndcg@5": 0.8742459324680135,
+    "precision@5": 0.2,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.11999999999999997,
+    "constraint_violations@5": 0.4,
+    "violation_kinds": {
+     "zero_shared_availability": 1,
+     "prefers_no_vacant_role": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M5 without avail": {
+    "ndcg@5": 0.8000057307213942,
+    "precision@5": 0.2,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.09999999999999998,
+    "constraint_violations@5": 0.4,
+    "violation_kinds": {
+     "zero_shared_availability": 2
+    },
+    "mandatory_violations": 0
+   },
+   "M5 without work": {
+    "ndcg@5": 0.9552059062405647,
+    "precision@5": 0.4,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.039999999999999994,
+    "constraint_violations@5": 0.0,
+    "violation_kinds": {},
+    "mandatory_violations": 0
+   }
+  },
+  "SYN-P03-3": {
+   "M1": {
+    "ndcg@5": 0.8824076000543708,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.07999999999999999,
+    "constraint_violations@5": 0.6,
+    "violation_kinds": {
+     "prefers_no_vacant_role": 3
+    },
+    "mandatory_violations": 0
+   },
+   "M2": {
+    "ndcg@5": 0.5813352117161656,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.039999999999999994,
+    "constraint_violations@5": 0.4,
+    "violation_kinds": {
+     "prefers_no_vacant_role": 2
+    },
+    "mandatory_violations": 0
+   },
+   "M3": {
+    "ndcg@5": 0.853204606805257,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.059999999999999984,
+    "constraint_violations@5": 0.4,
+    "violation_kinds": {
+     "prefers_no_vacant_role": 2
+    },
+    "mandatory_violations": 0
+   },
+   "M4": {
+    "ndcg@5": 0.9874668699701061,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.07999999999999999,
+    "constraint_violations@5": 0.4,
+    "violation_kinds": {
+     "prefers_no_vacant_role": 2
+    },
+    "mandatory_violations": 0
+   },
+   "M5": {
+    "ndcg@5": 1.0,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.07999999999999999,
+    "constraint_violations@5": 0.4,
+    "violation_kinds": {
+     "prefers_no_vacant_role": 2
+    },
+    "mandatory_violations": 0
+   },
+   "M5 (initial weights)": {
+    "ndcg@5": 0.9874668699701061,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.059999999999999984,
+    "constraint_violations@5": 0.2,
+    "violation_kinds": {
+     "prefers_no_vacant_role": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M5 without sem": {
+    "ndcg@5": 0.9729639946783206,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.059999999999999984,
+    "constraint_violations@5": 0.2,
+    "violation_kinds": {
+     "prefers_no_vacant_role": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M5 without gap": {
+    "ndcg@5": 0.8872618854700021,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.039999999999999994,
+    "constraint_violations@5": 0.0,
+    "violation_kinds": {},
+    "mandatory_violations": 0
+   },
+   "M5 without role": {
+    "ndcg@5": 0.9923211553857374,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.07999999999999999,
+    "constraint_violations@5": 0.4,
+    "violation_kinds": {
+     "prefers_no_vacant_role": 2
+    },
+    "mandatory_violations": 0
+   },
+   "M5 without avail": {
+    "ndcg@5": 0.9874668699701061,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.059999999999999984,
+    "constraint_violations@5": 0.2,
+    "violation_kinds": {
+     "prefers_no_vacant_role": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M5 without work": {
+    "ndcg@5": 0.9729639946783206,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.059999999999999984,
+    "constraint_violations@5": 0.2,
+    "violation_kinds": {
+     "prefers_no_vacant_role": 1
+    },
+    "mandatory_violations": 0
+   }
+  },
+  "SYN-P03-4": {
+   "M1": {
+    "ndcg@5": 0.3636279738429225,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.039999999999999994,
+    "constraint_violations@5": 0.8,
+    "violation_kinds": {
+     "incompatible_work_mode": 1,
+     "prefers_no_vacant_role": 2,
+     "zero_shared_availability": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M2": {
+    "ndcg@5": 0.41695329979438145,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.019999999999999997,
+    "constraint_violations@5": 0.6,
+    "violation_kinds": {
+     "prefers_no_vacant_role": 3,
+     "zero_shared_availability": 1,
+     "incompatible_work_mode": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M3": {
+    "ndcg@5": 0.6890389154698969,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.019999999999999997,
+    "constraint_violations@5": 0.4,
+    "violation_kinds": {
+     "incompatible_work_mode": 2,
+     "prefers_no_vacant_role": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M4": {
+    "ndcg@5": 0.5654081017667287,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.039999999999999994,
+    "constraint_violations@5": 0.6,
+    "violation_kinds": {
+     "incompatible_work_mode": 2,
+     "prefers_no_vacant_role": 2
+    },
+    "mandatory_violations": 0
+   },
+   "M5": {
+    "ndcg@5": 0.8403740258136881,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.019999999999999997,
+    "constraint_violations@5": 0.2,
+    "violation_kinds": {
+     "incompatible_work_mode": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M5 (initial weights)": {
+    "ndcg@5": 0.8916316965176301,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.019999999999999997,
+    "constraint_violations@5": 0.2,
+    "violation_kinds": {
+     "incompatible_work_mode": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M5 without sem": {
+    "ndcg@5": 0.9028490125955208,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.019999999999999997,
+    "constraint_violations@5": 0.2,
+    "violation_kinds": {
+     "incompatible_work_mode": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M5 without gap": {
+    "ndcg@5": 0.9028490125955208,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.019999999999999997,
+    "constraint_violations@5": 0.2,
+    "violation_kinds": {
+     "incompatible_work_mode": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M5 without role": {
+    "ndcg@5": 0.701374973455325,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.039999999999999994,
+    "constraint_violations@5": 0.4,
+    "violation_kinds": {
+     "prefers_no_vacant_role": 1,
+     "incompatible_work_mode": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M5 without avail": {
+    "ndcg@5": 0.8088844223460958,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.019999999999999997,
+    "constraint_violations@5": 0.2,
+    "violation_kinds": {
+     "incompatible_work_mode": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M5 without work": {
+    "ndcg@5": 0.9028490125955208,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.019999999999999997,
+    "constraint_violations@5": 0.2,
+    "violation_kinds": {
+     "incompatible_work_mode": 1
+    },
+    "mandatory_violations": 0
+   }
+  },
+  "SYN-P03-5": {
+   "M1": {
+    "ndcg@5": null,
+    "precision@5": null,
+    "judged@5": null,
+    "added_coverage@5": null,
+    "constraint_violations@5": null,
+    "violation_kinds": {},
+    "mandatory_violations": 0
+   },
+   "M2": {
+    "ndcg@5": null,
+    "precision@5": null,
+    "judged@5": null,
+    "added_coverage@5": null,
+    "constraint_violations@5": null,
+    "violation_kinds": {},
+    "mandatory_violations": 0
+   },
+   "M3": {
+    "ndcg@5": null,
+    "precision@5": null,
+    "judged@5": null,
+    "added_coverage@5": null,
+    "constraint_violations@5": null,
+    "violation_kinds": {},
+    "mandatory_violations": 0
+   },
+   "M4": {
+    "ndcg@5": null,
+    "precision@5": null,
+    "judged@5": null,
+    "added_coverage@5": null,
+    "constraint_violations@5": null,
+    "violation_kinds": {},
+    "mandatory_violations": 0
+   },
+   "M5": {
+    "ndcg@5": null,
+    "precision@5": null,
+    "judged@5": null,
+    "added_coverage@5": null,
+    "constraint_violations@5": null,
+    "violation_kinds": {},
+    "mandatory_violations": 0
+   },
+   "M5 (initial weights)": {
+    "ndcg@5": null,
+    "precision@5": null,
+    "judged@5": null,
+    "added_coverage@5": null,
+    "constraint_violations@5": null,
+    "violation_kinds": {},
+    "mandatory_violations": 0
+   }
+  },
+  "SYN-P06-1": {
+   "M1": {
+    "ndcg@5": 0.6644628037666921,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.12000000000000002,
+    "constraint_violations@5": 0.4,
+    "violation_kinds": {
+     "incompatible_work_mode": 2
+    },
+    "mandatory_violations": 0
+   },
+   "M2": {
+    "ndcg@5": 0.8110675331876817,
+    "precision@5": 0.2,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.14,
+    "constraint_violations@5": 0.4,
+    "violation_kinds": {
+     "incompatible_work_mode": 2
+    },
+    "mandatory_violations": 0
+   },
+   "M3": {
+    "ndcg@5": 0.7713142024653321,
+    "precision@5": 0.2,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.14,
+    "constraint_violations@5": 0.4,
+    "violation_kinds": {
+     "incompatible_work_mode": 2
+    },
+    "mandatory_violations": 0
+   },
+   "M4": {
+    "ndcg@5": 0.8542588961555176,
+    "precision@5": 0.2,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.18000000000000002,
+    "constraint_violations@5": 0.4,
+    "violation_kinds": {
+     "incompatible_work_mode": 2
+    },
+    "mandatory_violations": 0
+   },
+   "M5": {
+    "ndcg@5": 0.8893385243421478,
+    "precision@5": 0.2,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.18000000000000002,
+    "constraint_violations@5": 0.2,
+    "violation_kinds": {
+     "incompatible_work_mode": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M5 (initial weights)": {
+    "ndcg@5": 0.8893385243421478,
+    "precision@5": 0.2,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.18000000000000002,
+    "constraint_violations@5": 0.2,
+    "violation_kinds": {
+     "incompatible_work_mode": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M5 without sem": {
+    "ndcg@5": 0.8542588961555176,
+    "precision@5": 0.2,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.18000000000000002,
+    "constraint_violations@5": 0.4,
+    "violation_kinds": {
+     "incompatible_work_mode": 2
+    },
+    "mandatory_violations": 0
+   },
+   "M5 without gap": {
+    "ndcg@5": 0.8893385243421478,
+    "precision@5": 0.2,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.14,
+    "constraint_violations@5": 0.4,
+    "violation_kinds": {
+     "incompatible_work_mode": 2
+    },
+    "mandatory_violations": 0
+   },
+   "M5 without role": {
+    "ndcg@5": 0.8893385243421478,
+    "precision@5": 0.2,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.18000000000000002,
+    "constraint_violations@5": 0.2,
+    "violation_kinds": {
+     "incompatible_work_mode": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M5 without avail": {
+    "ndcg@5": 0.9897398664857903,
+    "precision@5": 0.2,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.18000000000000002,
+    "constraint_violations@5": 0.2,
+    "violation_kinds": {
+     "incompatible_work_mode": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M5 without work": {
+    "ndcg@5": 0.8542588961555176,
+    "precision@5": 0.2,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.18000000000000002,
+    "constraint_violations@5": 0.4,
+    "violation_kinds": {
+     "incompatible_work_mode": 2
+    },
+    "mandatory_violations": 0
+   }
+  },
+  "SYN-P06-2": {
+   "M1": {
+    "ndcg@5": 0.9879482226276447,
+    "precision@5": 1.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.24666666666666665,
+    "constraint_violations@5": 0.0,
+    "violation_kinds": {},
+    "mandatory_violations": 0
+   },
+   "M2": {
+    "ndcg@5": 0.733108836782222,
+    "precision@5": 0.6,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.18666666666666665,
+    "constraint_violations@5": 0.0,
+    "violation_kinds": {},
+    "mandatory_violations": 0
+   },
+   "M3": {
+    "ndcg@5": 0.9944131357017473,
+    "precision@5": 1.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.24666666666666665,
+    "constraint_violations@5": 0.0,
+    "violation_kinds": {},
+    "mandatory_violations": 0
+   },
+   "M4": {
+    "ndcg@5": 0.9944131357017473,
+    "precision@5": 1.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.24666666666666667,
+    "constraint_violations@5": 0.0,
+    "violation_kinds": {},
+    "mandatory_violations": 0
+   },
+   "M5": {
+    "ndcg@5": 0.9944131357017473,
+    "precision@5": 1.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.24666666666666667,
+    "constraint_violations@5": 0.0,
+    "violation_kinds": {},
+    "mandatory_violations": 0
+   },
+   "M5 (initial weights)": {
+    "ndcg@5": 1.0,
+    "precision@5": 1.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.24666666666666665,
+    "constraint_violations@5": 0.0,
+    "violation_kinds": {},
+    "mandatory_violations": 0
+   },
+   "M5 without sem": {
+    "ndcg@5": 1.0,
+    "precision@5": 1.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.24666666666666665,
+    "constraint_violations@5": 0.0,
+    "violation_kinds": {},
+    "mandatory_violations": 0
+   },
+   "M5 without gap": {
+    "ndcg@5": 0.9553051189502406,
+    "precision@5": 0.8,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.2,
+    "constraint_violations@5": 0.0,
+    "violation_kinds": {},
+    "mandatory_violations": 0
+   },
+   "M5 without role": {
+    "ndcg@5": 0.9944131357017473,
+    "precision@5": 1.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.24666666666666667,
+    "constraint_violations@5": 0.0,
+    "violation_kinds": {},
+    "mandatory_violations": 0
+   },
+   "M5 without avail": {
+    "ndcg@5": 0.9978361164515621,
+    "precision@5": 1.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.24666666666666667,
+    "constraint_violations@5": 0.0,
+    "violation_kinds": {},
+    "mandatory_violations": 0
+   },
+   "M5 without work": {
+    "ndcg@5": 1.0,
+    "precision@5": 1.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.24666666666666665,
+    "constraint_violations@5": 0.0,
+    "violation_kinds": {},
+    "mandatory_violations": 0
+   }
+  },
+  "SYN-P06-3": {
+   "M1": {
+    "ndcg@5": 0.9905084190731778,
+    "precision@5": 0.2,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.18666666666666662,
+    "constraint_violations@5": 0.2,
+    "violation_kinds": {
+     "incompatible_work_mode": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M2": {
+    "ndcg@5": 0.850406835078852,
+    "precision@5": 0.2,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.13999999999999996,
+    "constraint_violations@5": 0.2,
+    "violation_kinds": {
+     "incompatible_work_mode": 1,
+     "prefers_no_vacant_role": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M3": {
+    "ndcg@5": 0.9863166301722276,
+    "precision@5": 0.2,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.18666666666666662,
+    "constraint_violations@5": 0.2,
+    "violation_kinds": {
+     "incompatible_work_mode": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M4": {
+    "ndcg@5": 0.997350103987064,
+    "precision@5": 0.2,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.18666666666666662,
+    "constraint_violations@5": 0.2,
+    "violation_kinds": {
+     "incompatible_work_mode": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M5": {
+    "ndcg@5": 0.997350103987064,
+    "precision@5": 0.2,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.18666666666666662,
+    "constraint_violations@5": 0.2,
+    "violation_kinds": {
+     "incompatible_work_mode": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M5 (initial weights)": {
+    "ndcg@5": 0.997350103987064,
+    "precision@5": 0.2,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.18666666666666662,
+    "constraint_violations@5": 0.2,
+    "violation_kinds": {
+     "incompatible_work_mode": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M5 without sem": {
+    "ndcg@5": 0.9889665261851635,
+    "precision@5": 0.2,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.18666666666666662,
+    "constraint_violations@5": 0.2,
+    "violation_kinds": {
+     "incompatible_work_mode": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M5 without gap": {
+    "ndcg@5": 0.9863166301722276,
+    "precision@5": 0.2,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.18666666666666662,
+    "constraint_violations@5": 0.2,
+    "violation_kinds": {
+     "incompatible_work_mode": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M5 without role": {
+    "ndcg@5": 0.997350103987064,
+    "precision@5": 0.2,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.18666666666666662,
+    "constraint_violations@5": 0.2,
+    "violation_kinds": {
+     "incompatible_work_mode": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M5 without avail": {
+    "ndcg@5": 0.997350103987064,
+    "precision@5": 0.2,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.18666666666666662,
+    "constraint_violations@5": 0.2,
+    "violation_kinds": {
+     "incompatible_work_mode": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M5 without work": {
+    "ndcg@5": 0.9889665261851635,
+    "precision@5": 0.2,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.18666666666666662,
+    "constraint_violations@5": 0.2,
+    "violation_kinds": {
+     "incompatible_work_mode": 1
+    },
+    "mandatory_violations": 0
+   }
+  },
+  "SYN-P06-4": {
+   "M1": {
+    "ndcg@5": 0.7871359013925476,
+    "precision@5": 0.2,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.11999999999999997,
+    "constraint_violations@5": 0.2,
+    "violation_kinds": {
+     "zero_shared_availability": 1,
+     "incompatible_work_mode": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M2": {
+    "ndcg@5": 0.8925970942415445,
+    "precision@5": 0.2,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.15999999999999998,
+    "constraint_violations@5": 0.4,
+    "violation_kinds": {
+     "zero_shared_availability": 1,
+     "incompatible_work_mode": 1,
+     "prefers_no_vacant_role": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M3": {
+    "ndcg@5": 0.9577182002648912,
+    "precision@5": 0.2,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.15999999999999998,
+    "constraint_violations@5": 0.4,
+    "violation_kinds": {
+     "zero_shared_availability": 1,
+     "incompatible_work_mode": 2
+    },
+    "mandatory_violations": 0
+   },
+   "M4": {
+    "ndcg@5": 0.8595390143169184,
+    "precision@5": 0.2,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.18666666666666662,
+    "constraint_violations@5": 0.6,
+    "violation_kinds": {
+     "zero_shared_availability": 1,
+     "incompatible_work_mode": 2,
+     "prefers_no_vacant_role": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M5": {
+    "ndcg@5": 0.8735715134295334,
+    "precision@5": 0.2,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.18666666666666662,
+    "constraint_violations@5": 0.6,
+    "violation_kinds": {
+     "incompatible_work_mode": 2,
+     "prefers_no_vacant_role": 1,
+     "zero_shared_availability": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M5 (initial weights)": {
+    "ndcg@5": 0.9465061410433371,
+    "precision@5": 0.2,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.14666666666666664,
+    "constraint_violations@5": 0.4,
+    "violation_kinds": {
+     "incompatible_work_mode": 2,
+     "zero_shared_availability": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M5 without sem": {
+    "ndcg@5": 0.829763188630096,
+    "precision@5": 0.2,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.14666666666666664,
+    "constraint_violations@5": 0.4,
+    "violation_kinds": {
+     "incompatible_work_mode": 1,
+     "prefers_no_vacant_role": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M5 without gap": {
+    "ndcg@5": 0.729411404324798,
+    "precision@5": 0.2,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.07333333333333332,
+    "constraint_violations@5": 0.2,
+    "violation_kinds": {
+     "incompatible_work_mode": 1
+    },
+    "mandatory_violations": 0
+   },
+   "M5 without role": {
+    "ndcg@5": 0.8691099464195704,
+    "precision@5": 0.2,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.18666666666666662,
+    "constraint_violations@5": 0.6,
+    "violation_kinds": {
+     "prefers_no_vacant_role": 1,
+     "zero_shared_availability": 1,
+     "incompatible_work_mode": 2
+    },
+    "mandatory_violations": 0
+   },
+   "M5 without avail": {
+    "ndcg@5": 0.8900772401410401,
+    "precision@5": 0.2,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.15999999999999998,
+    "constraint_violations@5": 0.4,
+    "violation_kinds": {
+     "zero_shared_availability": 1,
+     "incompatible_work_mode": 2
+    },
+    "mandatory_violations": 0
+   },
+   "M5 without work": {
+    "ndcg@5": 0.829763188630096,
+    "precision@5": 0.2,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.14666666666666664,
+    "constraint_violations@5": 0.4,
+    "violation_kinds": {
+     "incompatible_work_mode": 1,
+     "prefers_no_vacant_role": 1
+    },
+    "mandatory_violations": 0
+   }
+  },
+  "SYN-P06-5": {
+   "M1": {
+    "ndcg@5": 1.0,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.09999999999999998,
+    "constraint_violations@5": 0.0,
+    "violation_kinds": {},
+    "mandatory_violations": 0
+   },
+   "M2": {
+    "ndcg@5": 1.0,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.09999999999999998,
+    "constraint_violations@5": 0.0,
+    "violation_kinds": {},
+    "mandatory_violations": 0
+   },
+   "M3": {
+    "ndcg@5": 1.0,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.09999999999999998,
+    "constraint_violations@5": 0.0,
+    "violation_kinds": {},
+    "mandatory_violations": 0
+   },
+   "M4": {
+    "ndcg@5": 1.0,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.09999999999999998,
+    "constraint_violations@5": 0.0,
+    "violation_kinds": {},
+    "mandatory_violations": 0
+   },
+   "M5": {
+    "ndcg@5": 1.0,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.09999999999999998,
+    "constraint_violations@5": 0.0,
+    "violation_kinds": {},
+    "mandatory_violations": 0
+   },
+   "M5 (initial weights)": {
+    "ndcg@5": 1.0,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.09999999999999998,
+    "constraint_violations@5": 0.0,
+    "violation_kinds": {},
+    "mandatory_violations": 0
+   },
+   "M5 without sem": {
+    "ndcg@5": 1.0,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.09999999999999998,
+    "constraint_violations@5": 0.0,
+    "violation_kinds": {},
+    "mandatory_violations": 0
+   },
+   "M5 without gap": {
+    "ndcg@5": 1.0,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.09999999999999998,
+    "constraint_violations@5": 0.0,
+    "violation_kinds": {},
+    "mandatory_violations": 0
+   },
+   "M5 without role": {
+    "ndcg@5": 1.0,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.09999999999999998,
+    "constraint_violations@5": 0.0,
+    "violation_kinds": {},
+    "mandatory_violations": 0
+   },
+   "M5 without avail": {
+    "ndcg@5": 1.0,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.09999999999999998,
+    "constraint_violations@5": 0.0,
+    "violation_kinds": {},
+    "mandatory_violations": 0
+   },
+   "M5 without work": {
+    "ndcg@5": 1.0,
+    "precision@5": 0.0,
+    "judged@5": 1.0,
+    "added_coverage@5": 0.09999999999999998,
+    "constraint_violations@5": 0.0,
+    "violation_kinds": {},
+    "mandatory_violations": 0
+   }
+  }
+ },
+ "top10_rankings": {
+  "SYN-P02-1": {
+   "M1": [
+    "syn-u113",
+    "syn-u062",
+    "syn-u082",
+    "syn-u123",
+    "syn-u067",
+    "syn-u107",
+    "syn-u004",
+    "syn-u005",
+    "syn-u014",
+    "syn-u015"
+   ],
+   "M2": [
+    "syn-u113",
+    "syn-u062",
+    "syn-u082",
+    "syn-u133",
+    "syn-u123",
+    "syn-u107",
+    "syn-u072",
+    "syn-u049",
+    "syn-u017",
+    "syn-u067"
+   ],
+   "M3": [
+    "syn-u082",
+    "syn-u107",
+    "syn-u017",
+    "syn-u072",
+    "syn-u113",
+    "syn-u062",
+    "syn-u123",
+    "syn-u054",
+    "syn-u014",
+    "syn-u015"
+   ],
+   "M4": [
+    "syn-u113",
+    "syn-u082",
+    "syn-u062",
+    "syn-u123",
+    "syn-u107",
+    "syn-u017",
+    "syn-u072",
+    "syn-u067",
+    "syn-u054",
+    "syn-u014"
+   ],
+   "M5": [
+    "syn-u113",
+    "syn-u067",
+    "syn-u107",
+    "syn-u082",
+    "syn-u062",
+    "syn-u123",
+    "syn-u110",
+    "syn-u017",
+    "syn-u074",
+    "syn-u095"
+   ],
+   "M5 (initial weights)": [
+    "syn-u067",
+    "syn-u107",
+    "syn-u113",
+    "syn-u017",
+    "syn-u110",
+    "syn-u082",
+    "syn-u123",
+    "syn-u062",
+    "syn-u074",
+    "syn-u095"
+   ],
+   "M5 without sem": [
+    "syn-u067",
+    "syn-u107",
+    "syn-u017",
+    "syn-u110",
+    "syn-u113",
+    "syn-u082",
+    "syn-u062",
+    "syn-u074",
+    "syn-u036",
+    "syn-u123"
+   ],
+   "M5 without gap": [
+    "syn-u067",
+    "syn-u107",
+    "syn-u017",
+    "syn-u110",
+    "syn-u074",
+    "syn-u036",
+    "syn-u113",
+    "syn-u082",
+    "syn-u062",
+    "syn-u123"
+   ],
+   "M5 without role": [
+    "syn-u113",
+    "syn-u082",
+    "syn-u062",
+    "syn-u123",
+    "syn-u107",
+    "syn-u067",
+    "syn-u095",
+    "syn-u104",
+    "syn-u133",
+    "syn-u072"
+   ],
+   "M5 without avail": [
+    "syn-u067",
+    "syn-u107",
+    "syn-u113",
+    "syn-u110",
+    "syn-u017",
+    "syn-u082",
+    "syn-u062",
+    "syn-u123",
+    "syn-u074",
+    "syn-u036"
+   ],
+   "M5 without work": [
+    "syn-u067",
+    "syn-u107",
+    "syn-u017",
+    "syn-u110",
+    "syn-u113",
+    "syn-u082",
+    "syn-u062",
+    "syn-u074",
+    "syn-u036",
+    "syn-u123"
+   ]
+  },
+  "SYN-P02-2": {
+   "M1": [
+    "syn-u033",
+    "syn-u089",
+    "syn-u018",
+    "syn-u067",
+    "syn-u107",
+    "syn-u147",
+    "syn-u014",
+    "syn-u017",
+    "syn-u024",
+    "syn-u025"
+   ],
+   "M2": [
+    "syn-u033",
+    "syn-u089",
+    "syn-u147",
+    "syn-u107",
+    "syn-u061",
+    "syn-u018",
+    "syn-u154",
+    "syn-u017",
+    "syn-u067",
+    "syn-u024"
+   ],
+   "M3": [
+    "syn-u107",
+    "syn-u147",
+    "syn-u017",
+    "syn-u033",
+    "syn-u154",
+    "syn-u014",
+    "syn-u089",
+    "syn-u075",
+    "syn-u018",
+    "syn-u024"
+   ],
+   "M4": [
+    "syn-u033",
+    "syn-u147",
+    "syn-u089",
+    "syn-u018",
+    "syn-u107",
+    "syn-u017",
+    "syn-u067",
+    "syn-u154",
+    "syn-u014",
+    "syn-u075"
+   ],
+   "M5": [
+    "syn-u033",
+    "syn-u067",
+    "syn-u147",
+    "syn-u089",
+    "syn-u107",
+    "syn-u017",
+    "syn-u018",
+    "syn-u080",
+    "syn-u057",
+    "syn-u110"
+   ],
+   "M5 (initial weights)": [
+    "syn-u147",
+    "syn-u067",
+    "syn-u033",
+    "syn-u017",
+    "syn-u107",
+    "syn-u080",
+    "syn-u089",
+    "syn-u057",
+    "syn-u110",
+    "syn-u018"
+   ],
+   "M5 without sem": [
+    "syn-u067",
+    "syn-u017",
+    "syn-u147",
+    "syn-u033",
+    "syn-u089",
+    "syn-u107",
+    "syn-u080",
+    "syn-u110",
+    "syn-u057",
+    "syn-u014"
+   ],
+   "M5 without gap": [
+    "syn-u067",
+    "syn-u017",
+    "syn-u147",
+    "syn-u107",
+    "syn-u080",
+    "syn-u110",
+    "syn-u057",
+    "syn-u089",
+    "syn-u014",
+    "syn-u158"
+   ],
+   "M5 without role": [
+    "syn-u033",
+    "syn-u089",
+    "syn-u147",
+    "syn-u018",
+    "syn-u067",
+    "syn-u158",
+    "syn-u107",
+    "syn-u017",
+    "syn-u061",
+    "syn-u118"
+   ],
+   "M5 without avail": [
+    "syn-u147",
+    "syn-u033",
+    "syn-u067",
+    "syn-u107",
+    "syn-u057",
+    "syn-u080",
+    "syn-u060",
+    "syn-u110",
+    "syn-u017",
+    "syn-u089"
+   ],
+   "M5 without work": [
+    "syn-u067",
+    "syn-u017",
+    "syn-u147",
+    "syn-u033",
+    "syn-u089",
+    "syn-u107",
+    "syn-u080",
+    "syn-u110",
+    "syn-u057",
+    "syn-u014"
+   ]
+  },
+  "SYN-P02-3": {
+   "M1": [
+    "syn-u043",
+    "syn-u093",
+    "syn-u122",
+    "syn-u029",
+    "syn-u112",
+    "syn-u047",
+    "syn-u157",
+    "syn-u090",
+    "syn-u014",
+    "syn-u016"
+   ],
+   "M2": [
+    "syn-u122",
+    "syn-u043",
+    "syn-u093",
+    "syn-u112",
+    "syn-u072",
+    "syn-u140",
+    "syn-u151",
+    "syn-u049",
+    "syn-u029",
+    "syn-u047"
+   ],
+   "M3": [
+    "syn-u112",
+    "syn-u122",
+    "syn-u043",
+    "syn-u072",
+    "syn-u093",
+    "syn-u014",
+    "syn-u029",
+    "syn-u068",
+    "syn-u095",
+    "syn-u048"
+   ],
+   "M4": [
+    "syn-u043",
+    "syn-u093",
+    "syn-u112",
+    "syn-u122",
+    "syn-u047",
+    "syn-u157",
+    "syn-u029",
+    "syn-u072",
+    "syn-u090",
+    "syn-u014"
+   ],
+   "M5": [
+    "syn-u047",
+    "syn-u093",
+    "syn-u157",
+    "syn-u043",
+    "syn-u090",
+    "syn-u122",
+    "syn-u150",
+    "syn-u112",
+    "syn-u029",
+    "syn-u140"
+   ],
+   "M5 (initial weights)": [
+    "syn-u047",
+    "syn-u093",
+    "syn-u157",
+    "syn-u043",
+    "syn-u150",
+    "syn-u090",
+    "syn-u122",
+    "syn-u112",
+    "syn-u140",
+    "syn-u029"
+   ],
+   "M5 without sem": [
+    "syn-u047",
+    "syn-u157",
+    "syn-u043",
+    "syn-u093",
+    "syn-u140",
+    "syn-u150",
+    "syn-u090",
+    "syn-u016",
+    "syn-u112",
+    "syn-u122"
+   ],
+   "M5 without gap": [
+    "syn-u047",
+    "syn-u157",
+    "syn-u140",
+    "syn-u150",
+    "syn-u043",
+    "syn-u093",
+    "syn-u090",
+    "syn-u016",
+    "syn-u112",
+    "syn-u122"
+   ],
+   "M5 without role": [
+    "syn-u093",
+    "syn-u122",
+    "syn-u112",
+    "syn-u043",
+    "syn-u029",
+    "syn-u047",
+    "syn-u072",
+    "syn-u090",
+    "syn-u014",
+    "syn-u157"
+   ],
+   "M5 without avail": [
+    "syn-u047",
+    "syn-u157",
+    "syn-u093",
+    "syn-u043",
+    "syn-u150",
+    "syn-u090",
+    "syn-u140",
+    "syn-u122",
+    "syn-u112",
+    "syn-u029"
+   ],
+   "M5 without work": [
+    "syn-u047",
+    "syn-u157",
+    "syn-u043",
+    "syn-u093",
+    "syn-u140",
+    "syn-u150",
+    "syn-u090",
+    "syn-u016",
+    "syn-u112",
+    "syn-u122"
+   ]
+  },
+  "SYN-P02-4": {
+   "M1": [
+    "syn-u059",
+    "syn-u062",
+    "syn-u089",
+    "syn-u112",
+    "syn-u129",
+    "syn-u007",
+    "syn-u097",
+    "syn-u137",
+    "syn-u090",
+    "syn-u014"
+   ],
+   "M2": [
+    "syn-u089",
+    "syn-u112",
+    "syn-u062",
+    "syn-u100",
+    "syn-u140",
+    "syn-u102",
+    "syn-u059",
+    "syn-u051",
+    "syn-u129",
+    "syn-u137"
+   ],
+   "M3": [
+    "syn-u112",
+    "syn-u102",
+    "syn-u062",
+    "syn-u014",
+    "syn-u089",
+    "syn-u129",
+    "syn-u059",
+    "syn-u075",
+    "syn-u038",
+    "syn-u148"
+   ],
+   "M4": [
+    "syn-u112",
+    "syn-u062",
+    "syn-u089",
+    "syn-u129",
+    "syn-u059",
+    "syn-u007",
+    "syn-u097",
+    "syn-u102",
+    "syn-u137",
+    "syn-u090"
+   ],
+   "M5": [
+    "syn-u089",
+    "syn-u007",
+    "syn-u097",
+    "syn-u062",
+    "syn-u129",
+    "syn-u137",
+    "syn-u112",
+    "syn-u059",
+    "syn-u090",
+    "syn-u100"
+   ],
+   "M5 (initial weights)": [
+    "syn-u007",
+    "syn-u097",
+    "syn-u100",
+    "syn-u137",
+    "syn-u089",
+    "syn-u140",
+    "syn-u129",
+    "syn-u062",
+    "syn-u090",
+    "syn-u112"
+   ],
+   "M5 without sem": [
+    "syn-u007",
+    "syn-u090",
+    "syn-u089",
+    "syn-u129",
+    "syn-u100",
+    "syn-u140",
+    "syn-u062",
+    "syn-u097",
+    "syn-u137",
+    "syn-u102"
+   ],
+   "M5 without gap": [
+    "syn-u007",
+    "syn-u090",
+    "syn-u100",
+    "syn-u140",
+    "syn-u089",
+    "syn-u129",
+    "syn-u097",
+    "syn-u137",
+    "syn-u102",
+    "syn-u014"
+   ],
+   "M5 without role": [
+    "syn-u089",
+    "syn-u062",
+    "syn-u112",
+    "syn-u129",
+    "syn-u102",
+    "syn-u059",
+    "syn-u090",
+    "syn-u014",
+    "syn-u038",
+    "syn-u075"
+   ],
+   "M5 without avail": [
+    "syn-u097",
+    "syn-u137",
+    "syn-u007",
+    "syn-u100",
+    "syn-u112",
+    "syn-u140",
+    "syn-u062",
+    "syn-u089",
+    "syn-u059",
+    "syn-u090"
+   ],
+   "M5 without work": [
+    "syn-u007",
+    "syn-u090",
+    "syn-u089",
+    "syn-u129",
+    "syn-u100",
+    "syn-u140",
+    "syn-u062",
+    "syn-u097",
+    "syn-u137",
+    "syn-u102"
+   ]
+  },
+  "SYN-P02-5": {
+   "M1": [
+    "syn-u092"
+   ],
+   "M2": [
+    "syn-u092"
+   ],
+   "M3": [
+    "syn-u092"
+   ],
+   "M4": [
+    "syn-u092"
+   ],
+   "M5": [
+    "syn-u092"
+   ],
+   "M5 (initial weights)": [
+    "syn-u092"
+   ],
+   "M5 without sem": [
+    "syn-u092"
+   ],
+   "M5 without gap": [
+    "syn-u092"
+   ],
+   "M5 without role": [
+    "syn-u092"
+   ],
+   "M5 without avail": [
+    "syn-u092"
+   ],
+   "M5 without work": [
+    "syn-u092"
+   ]
+  },
+  "SYN-P03-1": {
+   "M1": [
+    "syn-u013",
+    "syn-u014",
+    "syn-u054",
+    "syn-u065",
+    "syn-u104",
+    "syn-u018",
+    "syn-u021",
+    "syn-u029",
+    "syn-u033",
+    "syn-u039"
+   ],
+   "M2": [
+    "syn-u065",
+    "syn-u104",
+    "syn-u014",
+    "syn-u054",
+    "syn-u013",
+    "syn-u094",
+    "syn-u154",
+    "syn-u021",
+    "syn-u124",
+    "syn-u148"
+   ],
+   "M3": [
+    "syn-u065",
+    "syn-u104",
+    "syn-u014",
+    "syn-u154",
+    "syn-u107",
+    "syn-u071",
+    "syn-u094",
+    "syn-u033",
+    "syn-u124",
+    "syn-u021"
+   ],
+   "M4": [
+    "syn-u104",
+    "syn-u014",
+    "syn-u054",
+    "syn-u065",
+    "syn-u013",
+    "syn-u154",
+    "syn-u107",
+    "syn-u071",
+    "syn-u094",
+    "syn-u033"
+   ],
+   "M5": [
+    "syn-u014",
+    "syn-u054",
+    "syn-u104",
+    "syn-u065",
+    "syn-u071",
+    "syn-u021",
+    "syn-u094",
+    "syn-u124",
+    "syn-u154",
+    "syn-u013"
+   ],
+   "M5 (initial weights)": [
+    "syn-u014",
+    "syn-u054",
+    "syn-u104",
+    "syn-u065",
+    "syn-u071",
+    "syn-u021",
+    "syn-u094",
+    "syn-u124",
+    "syn-u154",
+    "syn-u156"
+   ],
+   "M5 without sem": [
+    "syn-u014",
+    "syn-u054",
+    "syn-u104",
+    "syn-u065",
+    "syn-u154",
+    "syn-u071",
+    "syn-u094",
+    "syn-u124",
+    "syn-u021",
+    "syn-u013"
+   ],
+   "M5 without gap": [
+    "syn-u014",
+    "syn-u054",
+    "syn-u065",
+    "syn-u154",
+    "syn-u071",
+    "syn-u094",
+    "syn-u124",
+    "syn-u021",
+    "syn-u104",
+    "syn-u156"
+   ],
+   "M5 without role": [
+    "syn-u104",
+    "syn-u014",
+    "syn-u054",
+    "syn-u065",
+    "syn-u013",
+    "syn-u107",
+    "syn-u071",
+    "syn-u033",
+    "syn-u021",
+    "syn-u094"
+   ],
+   "M5 without avail": [
+    "syn-u014",
+    "syn-u054",
+    "syn-u104",
+    "syn-u065",
+    "syn-u071",
+    "syn-u021",
+    "syn-u094",
+    "syn-u124",
+    "syn-u154",
+    "syn-u013"
+   ],
+   "M5 without work": [
+    "syn-u014",
+    "syn-u054",
+    "syn-u104",
+    "syn-u065",
+    "syn-u154",
+    "syn-u071",
+    "syn-u094",
+    "syn-u124",
+    "syn-u021",
+    "syn-u013"
+   ]
+  },
+  "SYN-P03-2": {
+   "M1": [
+    "syn-u155",
+    "syn-u011",
+    "syn-u024",
+    "syn-u104",
+    "syn-u007",
+    "syn-u057",
+    "syn-u117",
+    "syn-u021",
+    "syn-u034",
+    "syn-u056"
+   ],
+   "M2": [
+    "syn-u155",
+    "syn-u104",
+    "syn-u024",
+    "syn-u114",
+    "syn-u034",
+    "syn-u094",
+    "syn-u057",
+    "syn-u021",
+    "syn-u102",
+    "syn-u128"
+   ],
+   "M3": [
+    "syn-u155",
+    "syn-u024",
+    "syn-u104",
+    "syn-u011",
+    "syn-u147",
+    "syn-u127",
+    "syn-u114",
+    "syn-u071",
+    "syn-u094",
+    "syn-u007"
+   ],
+   "M4": [
+    "syn-u024",
+    "syn-u104",
+    "syn-u155",
+    "syn-u011",
+    "syn-u117",
+    "syn-u007",
+    "syn-u057",
+    "syn-u147",
+    "syn-u127",
+    "syn-u114"
+   ],
+   "M5": [
+    "syn-u024",
+    "syn-u155",
+    "syn-u104",
+    "syn-u011",
+    "syn-u071",
+    "syn-u021",
+    "syn-u114",
+    "syn-u117",
+    "syn-u034",
+    "syn-u007"
+   ],
+   "M5 (initial weights)": [
+    "syn-u024",
+    "syn-u155",
+    "syn-u011",
+    "syn-u071",
+    "syn-u104",
+    "syn-u021",
+    "syn-u114",
+    "syn-u034",
+    "syn-u094",
+    "syn-u117"
+   ],
+   "M5 without sem": [
+    "syn-u024",
+    "syn-u155",
+    "syn-u114",
+    "syn-u071",
+    "syn-u021",
+    "syn-u034",
+    "syn-u011",
+    "syn-u102",
+    "syn-u117",
+    "syn-u007"
+   ],
+   "M5 without gap": [
+    "syn-u024",
+    "syn-u155",
+    "syn-u114",
+    "syn-u071",
+    "syn-u021",
+    "syn-u034",
+    "syn-u011",
+    "syn-u102",
+    "syn-u117",
+    "syn-u007"
+   ],
+   "M5 without role": [
+    "syn-u024",
+    "syn-u155",
+    "syn-u104",
+    "syn-u117",
+    "syn-u011",
+    "syn-u007",
+    "syn-u057",
+    "syn-u127",
+    "syn-u071",
+    "syn-u021"
+   ],
+   "M5 without avail": [
+    "syn-u024",
+    "syn-u104",
+    "syn-u011",
+    "syn-u155",
+    "syn-u094",
+    "syn-u071",
+    "syn-u021",
+    "syn-u114",
+    "syn-u034",
+    "syn-u117"
+   ],
+   "M5 without work": [
+    "syn-u024",
+    "syn-u155",
+    "syn-u114",
+    "syn-u071",
+    "syn-u021",
+    "syn-u034",
+    "syn-u011",
+    "syn-u102",
+    "syn-u117",
+    "syn-u007"
+   ]
+  },
+  "SYN-P03-3": {
+   "M1": [
+    "syn-u134",
+    "syn-u027",
+    "syn-u097",
+    "syn-u029",
+    "syn-u034",
+    "syn-u036",
+    "syn-u041",
+    "syn-u043",
+    "syn-u048",
+    "syn-u068"
+   ],
+   "M2": [
+    "syn-u134",
+    "syn-u132",
+    "syn-u152",
+    "syn-u034",
+    "syn-u043",
+    "syn-u154",
+    "syn-u068",
+    "syn-u027",
+    "syn-u128",
+    "syn-u138"
+   ],
+   "M3": [
+    "syn-u154",
+    "syn-u134",
+    "syn-u097",
+    "syn-u041",
+    "syn-u043",
+    "syn-u150",
+    "syn-u027",
+    "syn-u036",
+    "syn-u034",
+    "syn-u137"
+   ],
+   "M4": [
+    "syn-u134",
+    "syn-u097",
+    "syn-u027",
+    "syn-u154",
+    "syn-u041",
+    "syn-u043",
+    "syn-u150",
+    "syn-u036",
+    "syn-u034",
+    "syn-u137"
+   ],
+   "M5": [
+    "syn-u134",
+    "syn-u097",
+    "syn-u041",
+    "syn-u027",
+    "syn-u154",
+    "syn-u034",
+    "syn-u068",
+    "syn-u043",
+    "syn-u150",
+    "syn-u036"
+   ],
+   "M5 (initial weights)": [
+    "syn-u134",
+    "syn-u041",
+    "syn-u154",
+    "syn-u034",
+    "syn-u097",
+    "syn-u027",
+    "syn-u068",
+    "syn-u043",
+    "syn-u150",
+    "syn-u036"
+   ],
+   "M5 without sem": [
+    "syn-u134",
+    "syn-u154",
+    "syn-u041",
+    "syn-u034",
+    "syn-u097",
+    "syn-u027",
+    "syn-u068",
+    "syn-u043",
+    "syn-u150",
+    "syn-u036"
+   ],
+   "M5 without gap": [
+    "syn-u134",
+    "syn-u154",
+    "syn-u041",
+    "syn-u034",
+    "syn-u068",
+    "syn-u097",
+    "syn-u027",
+    "syn-u043",
+    "syn-u150",
+    "syn-u036"
+   ],
+   "M5 without role": [
+    "syn-u134",
+    "syn-u097",
+    "syn-u027",
+    "syn-u041",
+    "syn-u154",
+    "syn-u043",
+    "syn-u150",
+    "syn-u036",
+    "syn-u137",
+    "syn-u153"
+   ],
+   "M5 without avail": [
+    "syn-u134",
+    "syn-u041",
+    "syn-u154",
+    "syn-u034",
+    "syn-u097",
+    "syn-u027",
+    "syn-u068",
+    "syn-u043",
+    "syn-u150",
+    "syn-u153"
+   ],
+   "M5 without work": [
+    "syn-u134",
+    "syn-u154",
+    "syn-u041",
+    "syn-u034",
+    "syn-u097",
+    "syn-u027",
+    "syn-u068",
+    "syn-u043",
+    "syn-u150",
+    "syn-u036"
+   ]
+  },
+  "SYN-P03-4": {
+   "M1": [
+    "syn-u125",
+    "syn-u011",
+    "syn-u072",
+    "syn-u026",
+    "syn-u036",
+    "syn-u062",
+    "syn-u064",
+    "syn-u067",
+    "syn-u071",
+    "syn-u078"
+   ],
+   "M2": [
+    "syn-u125",
+    "syn-u072",
+    "syn-u064",
+    "syn-u062",
+    "syn-u140",
+    "syn-u129",
+    "syn-u089",
+    "syn-u109",
+    "syn-u011",
+    "syn-u026"
+   ],
+   "M3": [
+    "syn-u125",
+    "syn-u011",
+    "syn-u140",
+    "syn-u071",
+    "syn-u064",
+    "syn-u121",
+    "syn-u090",
+    "syn-u036",
+    "syn-u072",
+    "syn-u067"
+   ],
+   "M4": [
+    "syn-u125",
+    "syn-u011",
+    "syn-u072",
+    "syn-u140",
+    "syn-u071",
+    "syn-u064",
+    "syn-u121",
+    "syn-u090",
+    "syn-u036",
+    "syn-u067"
+   ],
+   "M5": [
+    "syn-u125",
+    "syn-u011",
+    "syn-u064",
+    "syn-u071",
+    "syn-u121",
+    "syn-u072",
+    "syn-u129",
+    "syn-u090",
+    "syn-u067",
+    "syn-u109"
+   ],
+   "M5 (initial weights)": [
+    "syn-u125",
+    "syn-u071",
+    "syn-u064",
+    "syn-u011",
+    "syn-u121",
+    "syn-u072",
+    "syn-u129",
+    "syn-u090",
+    "syn-u067",
+    "syn-u036"
+   ],
+   "M5 without sem": [
+    "syn-u125",
+    "syn-u071",
+    "syn-u064",
+    "syn-u121",
+    "syn-u011",
+    "syn-u129",
+    "syn-u067",
+    "syn-u089",
+    "syn-u072",
+    "syn-u140"
+   ],
+   "M5 without gap": [
+    "syn-u125",
+    "syn-u071",
+    "syn-u064",
+    "syn-u121",
+    "syn-u011",
+    "syn-u129",
+    "syn-u067",
+    "syn-u089",
+    "syn-u072",
+    "syn-u140"
+   ],
+   "M5 without role": [
+    "syn-u125",
+    "syn-u071",
+    "syn-u072",
+    "syn-u064",
+    "syn-u011",
+    "syn-u121",
+    "syn-u090",
+    "syn-u036",
+    "syn-u067",
+    "syn-u129"
+   ],
+   "M5 without avail": [
+    "syn-u011",
+    "syn-u125",
+    "syn-u064",
+    "syn-u071",
+    "syn-u121",
+    "syn-u072",
+    "syn-u026",
+    "syn-u129",
+    "syn-u090",
+    "syn-u062"
+   ],
+   "M5 without work": [
+    "syn-u125",
+    "syn-u071",
+    "syn-u064",
+    "syn-u121",
+    "syn-u011",
+    "syn-u129",
+    "syn-u067",
+    "syn-u089",
+    "syn-u072",
+    "syn-u140"
+   ]
+  },
+  "SYN-P03-5": {
+   "M1": [],
+   "M2": [],
+   "M3": [],
+   "M4": [],
+   "M5": [],
+   "M5 (initial weights)": []
+  },
+  "SYN-P06-1": {
+   "M1": [
+    "syn-u146",
+    "syn-u086",
+    "syn-u066",
+    "syn-u106",
+    "syn-u104",
+    "syn-u151",
+    "syn-u139",
+    "syn-u003",
+    "syn-u027",
+    "syn-u037"
+   ],
+   "M2": [
+    "syn-u146",
+    "syn-u086",
+    "syn-u106",
+    "syn-u066",
+    "syn-u151",
+    "syn-u085",
+    "syn-u132",
+    "syn-u140",
+    "syn-u145",
+    "syn-u104"
+   ],
+   "M3": [
+    "syn-u086",
+    "syn-u146",
+    "syn-u066",
+    "syn-u106",
+    "syn-u151",
+    "syn-u003",
+    "syn-u104",
+    "syn-u139",
+    "syn-u140",
+    "syn-u074"
+   ],
+   "M4": [
+    "syn-u146",
+    "syn-u151",
+    "syn-u086",
+    "syn-u104",
+    "syn-u066",
+    "syn-u106",
+    "syn-u139",
+    "syn-u003",
+    "syn-u140",
+    "syn-u074"
+   ],
+   "M5": [
+    "syn-u146",
+    "syn-u151",
+    "syn-u104",
+    "syn-u086",
+    "syn-u106",
+    "syn-u139",
+    "syn-u066",
+    "syn-u003",
+    "syn-u075",
+    "syn-u123"
+   ],
+   "M5 (initial weights)": [
+    "syn-u146",
+    "syn-u151",
+    "syn-u086",
+    "syn-u104",
+    "syn-u106",
+    "syn-u066",
+    "syn-u139",
+    "syn-u003",
+    "syn-u092",
+    "syn-u132"
+   ],
+   "M5 without sem": [
+    "syn-u146",
+    "syn-u151",
+    "syn-u086",
+    "syn-u104",
+    "syn-u066",
+    "syn-u106",
+    "syn-u139",
+    "syn-u003",
+    "syn-u132",
+    "syn-u092"
+   ],
+   "M5 without gap": [
+    "syn-u146",
+    "syn-u151",
+    "syn-u086",
+    "syn-u066",
+    "syn-u106",
+    "syn-u104",
+    "syn-u139",
+    "syn-u003",
+    "syn-u132",
+    "syn-u092"
+   ],
+   "M5 without role": [
+    "syn-u146",
+    "syn-u151",
+    "syn-u104",
+    "syn-u086",
+    "syn-u106",
+    "syn-u139",
+    "syn-u066",
+    "syn-u003",
+    "syn-u140",
+    "syn-u075"
+   ],
+   "M5 without avail": [
+    "syn-u151",
+    "syn-u146",
+    "syn-u104",
+    "syn-u086",
+    "syn-u106",
+    "syn-u066",
+    "syn-u139",
+    "syn-u003",
+    "syn-u092",
+    "syn-u132"
+   ],
+   "M5 without work": [
+    "syn-u146",
+    "syn-u151",
+    "syn-u086",
+    "syn-u104",
+    "syn-u066",
+    "syn-u106",
+    "syn-u139",
+    "syn-u003",
+    "syn-u132",
+    "syn-u092"
+   ]
+  },
+  "SYN-P06-2": {
+   "M1": [
+    "syn-u146",
+    "syn-u141",
+    "syn-u041",
+    "syn-u131",
+    "syn-u136",
+    "syn-u044",
+    "syn-u057",
+    "syn-u060",
+    "syn-u062",
+    "syn-u063"
+   ],
+   "M2": [
+    "syn-u146",
+    "syn-u136",
+    "syn-u141",
+    "syn-u112",
+    "syn-u072",
+    "syn-u131",
+    "syn-u140",
+    "syn-u062",
+    "syn-u070",
+    "syn-u041"
+   ],
+   "M3": [
+    "syn-u146",
+    "syn-u136",
+    "syn-u141",
+    "syn-u041",
+    "syn-u131",
+    "syn-u070",
+    "syn-u072",
+    "syn-u088",
+    "syn-u140",
+    "syn-u063"
+   ],
+   "M4": [
+    "syn-u146",
+    "syn-u136",
+    "syn-u141",
+    "syn-u131",
+    "syn-u041",
+    "syn-u070",
+    "syn-u072",
+    "syn-u088",
+    "syn-u140",
+    "syn-u063"
+   ],
+   "M5": [
+    "syn-u146",
+    "syn-u136",
+    "syn-u141",
+    "syn-u131",
+    "syn-u041",
+    "syn-u091",
+    "syn-u070",
+    "syn-u062",
+    "syn-u063",
+    "syn-u072"
+   ],
+   "M5 (initial weights)": [
+    "syn-u146",
+    "syn-u136",
+    "syn-u131",
+    "syn-u041",
+    "syn-u141",
+    "syn-u091",
+    "syn-u070",
+    "syn-u062",
+    "syn-u063",
+    "syn-u072"
+   ],
+   "M5 without sem": [
+    "syn-u146",
+    "syn-u136",
+    "syn-u131",
+    "syn-u041",
+    "syn-u141",
+    "syn-u091",
+    "syn-u070",
+    "syn-u063",
+    "syn-u062",
+    "syn-u129"
+   ],
+   "M5 without gap": [
+    "syn-u136",
+    "syn-u131",
+    "syn-u041",
+    "syn-u091",
+    "syn-u146",
+    "syn-u141",
+    "syn-u070",
+    "syn-u063",
+    "syn-u062",
+    "syn-u129"
+   ],
+   "M5 without role": [
+    "syn-u146",
+    "syn-u136",
+    "syn-u141",
+    "syn-u131",
+    "syn-u041",
+    "syn-u070",
+    "syn-u062",
+    "syn-u063",
+    "syn-u091",
+    "syn-u072"
+   ],
+   "M5 without avail": [
+    "syn-u146",
+    "syn-u136",
+    "syn-u131",
+    "syn-u141",
+    "syn-u041",
+    "syn-u091",
+    "syn-u072",
+    "syn-u070",
+    "syn-u062",
+    "syn-u063"
+   ],
+   "M5 without work": [
+    "syn-u146",
+    "syn-u136",
+    "syn-u131",
+    "syn-u041",
+    "syn-u141",
+    "syn-u091",
+    "syn-u070",
+    "syn-u063",
+    "syn-u062",
+    "syn-u129"
+   ]
+  },
+  "SYN-P06-3": {
+   "M1": [
+    "syn-u146",
+    "syn-u141",
+    "syn-u101",
+    "syn-u001",
+    "syn-u131",
+    "syn-u120",
+    "syn-u027",
+    "syn-u037",
+    "syn-u044",
+    "syn-u053"
+   ],
+   "M2": [
+    "syn-u146",
+    "syn-u101",
+    "syn-u120",
+    "syn-u141",
+    "syn-u072",
+    "syn-u140",
+    "syn-u062",
+    "syn-u001",
+    "syn-u131",
+    "syn-u070"
+   ],
+   "M3": [
+    "syn-u146",
+    "syn-u141",
+    "syn-u001",
+    "syn-u101",
+    "syn-u131",
+    "syn-u070",
+    "syn-u072",
+    "syn-u120",
+    "syn-u128",
+    "syn-u140"
+   ],
+   "M4": [
+    "syn-u146",
+    "syn-u141",
+    "syn-u131",
+    "syn-u001",
+    "syn-u101",
+    "syn-u120",
+    "syn-u070",
+    "syn-u072",
+    "syn-u128",
+    "syn-u140"
+   ],
+   "M5": [
+    "syn-u146",
+    "syn-u131",
+    "syn-u141",
+    "syn-u001",
+    "syn-u101",
+    "syn-u070",
+    "syn-u072",
+    "syn-u063",
+    "syn-u062",
+    "syn-u120"
+   ],
+   "M5 (initial weights)": [
+    "syn-u146",
+    "syn-u131",
+    "syn-u141",
+    "syn-u001",
+    "syn-u101",
+    "syn-u070",
+    "syn-u072",
+    "syn-u063",
+    "syn-u062",
+    "syn-u120"
+   ],
+   "M5 without sem": [
+    "syn-u146",
+    "syn-u131",
+    "syn-u001",
+    "syn-u141",
+    "syn-u101",
+    "syn-u070",
+    "syn-u072",
+    "syn-u063",
+    "syn-u062",
+    "syn-u120"
+   ],
+   "M5 without gap": [
+    "syn-u146",
+    "syn-u131",
+    "syn-u001",
+    "syn-u101",
+    "syn-u141",
+    "syn-u070",
+    "syn-u072",
+    "syn-u063",
+    "syn-u062",
+    "syn-u120"
+   ],
+   "M5 without role": [
+    "syn-u146",
+    "syn-u141",
+    "syn-u131",
+    "syn-u001",
+    "syn-u101",
+    "syn-u120",
+    "syn-u070",
+    "syn-u072",
+    "syn-u128",
+    "syn-u063"
+   ],
+   "M5 without avail": [
+    "syn-u146",
+    "syn-u131",
+    "syn-u141",
+    "syn-u001",
+    "syn-u101",
+    "syn-u070",
+    "syn-u072",
+    "syn-u063",
+    "syn-u062",
+    "syn-u120"
+   ],
+   "M5 without work": [
+    "syn-u146",
+    "syn-u131",
+    "syn-u001",
+    "syn-u141",
+    "syn-u101",
+    "syn-u070",
+    "syn-u072",
+    "syn-u063",
+    "syn-u062",
+    "syn-u120"
+   ]
+  },
+  "SYN-P06-4": {
+   "M1": [
+    "syn-u141",
+    "syn-u156",
+    "syn-u101",
+    "syn-u106",
+    "syn-u031",
+    "syn-u090",
+    "syn-u081",
+    "syn-u013",
+    "syn-u014",
+    "syn-u023"
+   ],
+   "M2": [
+    "syn-u106",
+    "syn-u156",
+    "syn-u090",
+    "syn-u101",
+    "syn-u141",
+    "syn-u140",
+    "syn-u088",
+    "syn-u108",
+    "syn-u102",
+    "syn-u081"
+   ],
+   "M3": [
+    "syn-u156",
+    "syn-u106",
+    "syn-u141",
+    "syn-u101",
+    "syn-u081",
+    "syn-u031",
+    "syn-u088",
+    "syn-u140",
+    "syn-u090",
+    "syn-u013"
+   ],
+   "M4": [
+    "syn-u141",
+    "syn-u106",
+    "syn-u156",
+    "syn-u081",
+    "syn-u090",
+    "syn-u101",
+    "syn-u031",
+    "syn-u088",
+    "syn-u140",
+    "syn-u013"
+   ],
+   "M5": [
+    "syn-u141",
+    "syn-u156",
+    "syn-u081",
+    "syn-u090",
+    "syn-u106",
+    "syn-u031",
+    "syn-u101",
+    "syn-u014",
+    "syn-u073",
+    "syn-u102"
+   ],
+   "M5 (initial weights)": [
+    "syn-u156",
+    "syn-u141",
+    "syn-u081",
+    "syn-u106",
+    "syn-u031",
+    "syn-u101",
+    "syn-u090",
+    "syn-u014",
+    "syn-u073",
+    "syn-u023"
+   ],
+   "M5 without sem": [
+    "syn-u081",
+    "syn-u031",
+    "syn-u090",
+    "syn-u141",
+    "syn-u156",
+    "syn-u101",
+    "syn-u014",
+    "syn-u106",
+    "syn-u013",
+    "syn-u073"
+   ],
+   "M5 without gap": [
+    "syn-u031",
+    "syn-u081",
+    "syn-u156",
+    "syn-u101",
+    "syn-u014",
+    "syn-u141",
+    "syn-u106",
+    "syn-u090",
+    "syn-u013",
+    "syn-u073"
+   ],
+   "M5 without role": [
+    "syn-u141",
+    "syn-u156",
+    "syn-u090",
+    "syn-u106",
+    "syn-u081",
+    "syn-u031",
+    "syn-u101",
+    "syn-u014",
+    "syn-u073",
+    "syn-u023"
+   ],
+   "M5 without avail": [
+    "syn-u106",
+    "syn-u081",
+    "syn-u141",
+    "syn-u156",
+    "syn-u101",
+    "syn-u031",
+    "syn-u090",
+    "syn-u014",
+    "syn-u073",
+    "syn-u023"
+   ],
+   "M5 without work": [
+    "syn-u081",
+    "syn-u031",
+    "syn-u090",
+    "syn-u141",
+    "syn-u156",
+    "syn-u101",
+    "syn-u014",
+    "syn-u106",
+    "syn-u013",
+    "syn-u073"
+   ]
+  },
+  "SYN-P06-5": {
+   "M1": [
+    "syn-u076",
+    "syn-u156"
+   ],
+   "M2": [
+    "syn-u156",
+    "syn-u076"
+   ],
+   "M3": [
+    "syn-u156",
+    "syn-u076"
+   ],
+   "M4": [
+    "syn-u156",
+    "syn-u076"
+   ],
+   "M5": [
+    "syn-u076",
+    "syn-u156"
+   ],
+   "M5 (initial weights)": [
+    "syn-u156",
+    "syn-u076"
+   ],
+   "M5 without sem": [
+    "syn-u156",
+    "syn-u076"
+   ],
+   "M5 without gap": [
+    "syn-u156",
+    "syn-u076"
+   ],
+   "M5 without role": [
+    "syn-u156",
+    "syn-u076"
+   ],
+   "M5 without avail": [
+    "syn-u076",
+    "syn-u156"
+   ],
+   "M5 without work": [
+    "syn-u156",
+    "syn-u076"
+   ]
+  }
+ },
+ "reliability": {
+  "overall": {
+   "alpha": 0.5325790929301863,
+   "pairable_units": 720,
+   "pairable_values": 2160,
+   "units_total": 720
+  },
+  "per_scenario": {
+   "SYN-P01-1": 0.11399000305250306,
+   "SYN-P01-2": 0.4238522712608078,
+   "SYN-P01-3": 0.5354836744639376,
+   "SYN-P01-4": 0.7385736946355335,
+   "SYN-P01-5": 0.7132855276776175,
+   "SYN-P02-1": 0.5322293447293447,
+   "SYN-P02-2": 0.602994227994228,
+   "SYN-P02-3": 0.3817069953263983,
+   "SYN-P02-4": 0.6195807557995876,
+   "SYN-P02-5": 0.7300123207885305,
+   "SYN-P03-1": 0.6235604516597559,
+   "SYN-P03-2": 0.4488719971440761,
+   "SYN-P03-3": 0.3699990097048921,
+   "SYN-P03-4": 0.46052859984029915,
+   "SYN-P03-5": 0.42459969076816906,
+   "SYN-P04-1": 0.6479010042212572,
+   "SYN-P04-2": 0.43629319105691056,
+   "SYN-P04-3": 0.6128326086036522,
+   "SYN-P04-4": 0.3460190510424155,
+   "SYN-P04-5": 0.2024700007594744,
+   "SYN-P05-1": 0.309909188034188,
+   "SYN-P05-2": 0.18298378076062638,
+   "SYN-P05-3": 0.5940293742017879,
+   "SYN-P05-4": -0.10918803418803424,
+   "SYN-P05-5": 0.3127165908598657,
+   "SYN-P06-1": 0.5670075757575758,
+   "SYN-P06-2": 0.43016523791775374,
+   "SYN-P06-3": 0.4448273779324008,
+   "SYN-P06-4": 0.5833122614990476,
+   "SYN-P06-5": 0.42342897364449084
+  }
+ },
+ "timing": {
+  "median_ms_warm_cache": 9.251899999071611,
+  "median_ms_cold_cache": 348.847699999169,
+  "includes": "eligibility, feature computation, scoring, explanations; warm = cached embeddings, cold = encoding the project and every candidate text. Excludes database retrieval.",
+  "hardware": "AMD64 Family 23 Model 104 Stepping 1, AuthenticAMD / Windows 10 / Python 3.10.11",
+  "encoder": "sentence-transformers/all-MiniLM-L6-v2"
+ },
+ "robustness": {
+  "incomplete_profiles": {
+   "0.2": {
+    "M1": {
+     "mean_delta_ndcg@5": -0.0062398039632880565,
+     "n": 14
+    },
+    "M2": {
+     "mean_delta_ndcg@5": 0.004775795597166752,
+     "n": 14
+    },
+    "M3": {
+     "mean_delta_ndcg@5": 0.003672241815308012,
+     "n": 14
+    },
+    "M4": {
+     "mean_delta_ndcg@5": -0.0011613477553845755,
+     "n": 14
+    },
+    "M5": {
+     "mean_delta_ndcg@5": -0.003642872125435586,
+     "n": 14
+    }
+   },
+   "0.4": {
+    "M1": {
+     "mean_delta_ndcg@5": -0.14271460159717697,
+     "n": 14
+    },
+    "M2": {
+     "mean_delta_ndcg@5": -0.12108755376954614,
+     "n": 14
+    },
+    "M3": {
+     "mean_delta_ndcg@5": -0.13500194396220952,
+     "n": 14
+    },
+    "M4": {
+     "mean_delta_ndcg@5": -0.12403627119274842,
+     "n": 14
+    },
+    "M5": {
+     "mean_delta_ndcg@5": -0.1787044707387635,
+     "n": 14
+    }
+   }
+  },
+  "inconsistent_labels": {
+   "scenarios_checked": 15,
+   "rankings_identical": 15,
+   "distinct_technologies_kept_separate": {
+    "React / React Native": true,
+    "Python / Django": true,
+    "Java / JavaScript": true,
+    "C / C++": true,
+    "C++ / C#": true
+   }
+  },
+  "limited_availability": {
+   "scenarios": [
+    "SYN-P02-2",
+    "SYN-P02-4"
+   ],
+   "metrics": {
+    "M1": {
+     "ndcg@5": {
+      "value": 0.6652179803759458,
+      "n": 2,
+      "status": "measured"
+     },
+     "precision@5": {
+      "value": 0.1,
+      "n": 2,
+      "status": "measured"
+     },
+     "added_coverage@5": {
+      "value": 0.21818181818181814,
+      "n": 2,
+      "status": "measured"
+     },
+     "constraint_violations@5": {
+      "value": 0.8,
+      "n": 2,
+      "status": "measured"
+     },
+     "judged@5": {
+      "value": 1.0,
+      "n": 2,
+      "status": "measured"
+     },
+     "mandatory_violations": 0
+    },
+    "M2": {
+     "ndcg@5": {
+      "value": 0.7486613519329584,
+      "n": 2,
+      "status": "measured"
+     },
+     "precision@5": {
+      "value": 0.1,
+      "n": 2,
+      "status": "measured"
+     },
+     "added_coverage@5": {
+      "value": 0.16363636363636364,
+      "n": 2,
+      "status": "measured"
+     },
+     "constraint_violations@5": {
+      "value": 0.7,
+      "n": 2,
+      "status": "measured"
+     },
+     "judged@5": {
+      "value": 1.0,
+      "n": 2,
+      "status": "measured"
+     },
+     "mandatory_violations": 0
+    },
+    "M3": {
+     "ndcg@5": {
+      "value": 0.6811316132021857,
+      "n": 2,
+      "status": "measured"
+     },
+     "precision@5": {
+      "value": 0.1,
+      "n": 2,
+      "status": "measured"
+     },
+     "added_coverage@5": {
+      "value": 0.14545454545454545,
+      "n": 2,
+      "status": "measured"
+     },
+     "constraint_violations@5": {
+      "value": 0.9,
+      "n": 2,
+      "status": "measured"
+     },
+     "judged@5": {
+      "value": 1.0,
+      "n": 2,
+      "status": "measured"
+     },
+     "mandatory_violations": 0
+    },
+    "M4": {
+     "ndcg@5": {
+      "value": 0.6812809897019567,
+      "n": 2,
+      "status": "measured"
+     },
+     "precision@5": {
+      "value": 0.1,
+      "n": 2,
+      "status": "measured"
+     },
+     "added_coverage@5": {
+      "value": 0.21818181818181814,
+      "n": 2,
+      "status": "measured"
+     },
+     "constraint_violations@5": {
+      "value": 0.8,
+      "n": 2,
+      "status": "measured"
+     },
+     "judged@5": {
+      "value": 1.0,
+      "n": 2,
+      "status": "measured"
+     },
+     "mandatory_violations": 0
+    },
+    "M5": {
+     "ndcg@5": {
+      "value": 0.9155677423791593,
+      "n": 2,
+      "status": "measured"
+     },
+     "precision@5": {
+      "value": 0.1,
+      "n": 2,
+      "status": "measured"
+     },
+     "added_coverage@5": {
+      "value": 0.20909090909090905,
+      "n": 2,
+      "status": "measured"
+     },
+     "constraint_violations@5": {
+      "value": 0.8,
+      "n": 2,
+      "status": "measured"
+     },
+     "judged@5": {
+      "value": 1.0,
+      "n": 2,
+      "status": "measured"
+     },
+     "mandatory_violations": 0
+    },
+    "M5 (initial weights)": {
+     "ndcg@5": {
+      "value": 0.8447324169080226,
+      "n": 2,
+      "status": "measured"
+     },
+     "precision@5": {
+      "value": 0.1,
+      "n": 2,
+      "status": "measured"
+     },
+     "added_coverage@5": {
+      "value": 0.16363636363636364,
+      "n": 2,
+      "status": "measured"
+     },
+     "constraint_violations@5": {
+      "value": 0.7,
+      "n": 2,
+      "status": "measured"
+     },
+     "judged@5": {
+      "value": 1.0,
+      "n": 2,
+      "status": "measured"
+     },
+     "mandatory_violations": 0
+    }
+   },
+   "note": null
+  },
+  "already_covered": {
+   "scenarios": 15,
+   "passed": 15,
+   "failed": []
+  },
+  "changed_membership": {
+   "per_method_mean_kendall_tau": {
+    "M1": 1.0,
+    "M2": 1.0,
+    "M3": 1.0,
+    "M4": 0.9342225407442798,
+    "M5": 0.9172058120907226
+   },
+   "n": {
+    "M1": 13,
+    "M2": 13,
+    "M3": 13,
+    "M4": 13,
+    "M5": 13
+   },
+   "team_independent_methods_unchanged": true,
+   "integrity_failures": []
+  }
+ },
+ "elapsed_seconds": 47.10787220000202
+}

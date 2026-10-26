@@ -1,0 +1,29 @@
+# Render blueprint for the FastAPI + Socket.IO backend.
+# Secrets marked sync:false are entered in the Render dashboard.
+services:
+  - type: web
+    name: assembl-api
+    runtime: docker
+    rootDir: backend
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/v1/health/ready
+    numInstances: 1          # >1 requires REDIS_URL (Socket.IO fan-out) and sticky sessions for polling
+    envVars:
+      - key: ENVIRONMENT
+        value: production
+      - key: MONGODB_URL
+        sync: false
+      - key: MONGODB_DB
+        value: assembl
+      - key: COOKIE_SECURE
+        value: "true"
+      - key: COOKIE_SAMESITE
+        value: lax
+      - key: CORS_ORIGINS
+        sync: false            # e.g. https://assembl.example.com
+      - key: ADMIN_EMAILS
+        sync: false
+      - key: EMBEDDING_BACKEND
+        value: sbert
+      - key: REDIS_URL
+        sync: false
