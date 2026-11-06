@@ -16,6 +16,7 @@ const STATUS_TONE: Record<string, "brand" | "neutral" | "muted" | "warn"> = {
 const REASONS: Record<string, string> = {
   team_full_or_closed: "the team filled up or closed first",
   team_full: "the team filled up",
+  project_closed: "the project was closed",
   already_on_event_team: "already on another team for this event",
 };
 

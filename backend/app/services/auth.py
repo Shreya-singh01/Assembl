@@ -7,6 +7,7 @@ from typing import Any
 
 from pymongo.errors import DuplicateKeyError
 
+from app.core.admins import role_for
 from app.core.config import Settings
 from app.core.errors import conflict
 from app.core.security import DUMMY_HASH, hash_password, new_token, token_digest, verify_password
@@ -24,7 +25,7 @@ async def register(db, settings: Settings, email: str, password: str, display_na
         "display_name": display_name,
         "handle": handle,
         "handle_key": handle.lower(),
-        "role": "admin" if email in settings.admin_email_set else "student",
+        "role": role_for(email, "student"),
         "created_at": now(),
         "consent": {"terms_accepted_at": now(), "research_participation": False},
     }
@@ -43,7 +44,18 @@ async def authenticate(db, email: str, password: str) -> dict | None:
     if not user:
         verify_password(password, DUMMY_HASH)  # equalise timing
         return None
-    return user if verify_password(password, user["password_hash"]) else None
+    if not verify_password(password, user["password_hash"]):
+        return None
+    return await sync_role(db, user)
+
+
+async def sync_role(db, user: dict) -> dict:
+    """Apply the admin list in app/core/admins.py to an existing account."""
+    role = role_for(user["email"], user.get("role", "student"))
+    if role != user.get("role"):
+        await db.users.update_one({"_id": user["_id"]}, {"$set": {"role": role}})
+        user = {**user, "role": role}
+    return user
 
 
 async def create_session(db, settings: Settings, user_id) -> tuple[str, dict]:
@@ -104,3 +116,22 @@ def user_brief(user: dict | None) -> dict[str, Any]:
     if not user:
         return {"id": None, "display_name": "Deleted user", "handle": None}
     return {"id": str(user["_id"]), "display_name": user["display_name"], "handle": user["handle"]}
+
+
+async def update_account(db, user: dict, display_name: str | None, handle: str | None) -> dict:
+    """Change display name and/or handle. Handles stay unique case-insensitively."""
+    update: dict[str, Any] = {}
+    if display_name is not None:
+        update["display_name"] = display_name
+    if handle is not None and handle != user["handle"]:
+        key = handle.lower()
+        if key != user["handle_key"] and await db.users.find_one({"handle_key": key, "_id": {"$ne": user["_id"]}}, {"_id": 1}):
+            raise conflict("That handle is already taken")
+        update.update(handle=handle, handle_key=key)
+    if not update:
+        return user
+    try:
+        await db.users.update_one({"_id": user["_id"]}, {"$set": update})
+    except DuplicateKeyError:
+        raise conflict("That handle is already taken") from None
+    return {**user, **update}

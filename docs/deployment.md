@@ -11,7 +11,6 @@
 - Set these environment variables:
   - `MONGODB_URL`
   - `CORS_ORIGINS`: your frontend origin
-  - `ADMIN_EMAILS`
   - optionally `REDIS_URL`
 - Health checks:
   - `/api/v1/health` is liveness.
@@ -39,5 +38,5 @@ Vercel and Render are different sites. A cookie set by `*.onrender.com` and sent
 **Test the chosen set-up in a real browser** after deploying: sign in, reload, send a message. That confirms the cookie survives under your exact origins.
 
 ## 5. After the first deploy
-- Register with an e-mail listed in `ADMIN_EMAILS` to get the research-admin role.
+- The three administrators are listed in `backend/app/core/admins.py`. Register those accounts right after deploying.
 - Never set `SEED_DEMO=1` in production. Startup rejects the in-memory DB and non-secure cookies in production anyway.

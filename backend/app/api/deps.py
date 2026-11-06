@@ -44,7 +44,7 @@ async def current_user(request: Request) -> dict:
     if request.method in UNSAFE and not constant_time_equals(request.headers.get("x-csrf-token"), session["csrf_token"]):
         raise HTTPException(status.HTTP_403_FORBIDDEN, "Missing or invalid CSRF token")
     request.state.session = session
-    return user
+    return await auth_service.sync_role(request.app.state.db, user)
 
 
 async def optional_user(request: Request) -> dict | None:

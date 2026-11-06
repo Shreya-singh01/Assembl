@@ -23,6 +23,11 @@ class LoginIn(Strict):
     password: str = Field(min_length=1, max_length=128)
 
 
+class AccountUpdateIn(Strict):
+    display_name: Annotated[str, StringConstraints(strip_whitespace=True, min_length=1, max_length=60)] | None = None
+    handle: Handle | None = None
+
+
 class ConsentIn(Strict):
     research_participation: bool
 

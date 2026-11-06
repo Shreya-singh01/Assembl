@@ -33,7 +33,7 @@ def ev():
 
 
 def test_synthetic_data_is_labelled(raw):
-    assert len(raw) == 30
+    assert len(raw) == 60  # 12 base projects x 5 team variants
     assert all(d["provenance"] == "synthetic" and d["judgment_provenance"] == "simulated" for d in raw)
     assert {len(d["team"]) for d in raw} >= {1, 2}
 

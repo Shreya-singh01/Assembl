@@ -8,6 +8,7 @@ import { Button } from "../../components/ui/Button";
 import { Alert, EmptyState, LoadState } from "../../components/ui/Feedback";
 import { Badge, Card, PageHeader, timeAgo } from "../../components/ui/Display";
 import { useAsync } from "../../hooks/useAsync";
+import { MessageBubble } from "./MessageBubble";
 
 const newClientId = () => (crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2)}`).replace(/[^A-Za-z0-9_-]/g, "").slice(0, 40);
 
@@ -105,6 +106,22 @@ function Thread({ id, conversation, onBack, onActivity }: { id: string; conversa
     ),
   );
 
+  useSocketEvent<Message>(
+    "message:updated",
+    useCallback((m) => m.conversation_id === id && setMessages((cur) => cur.map((x) => (x.id === m.id ? m : x))), [id]),
+  );
+
+  const change = async (m: Message, call: () => Promise<Message>) => {
+    setError(null);
+    try {
+      const updated = await call();
+      setMessages((cur) => cur.map((x) => (x.id === m.id ? updated : x)));
+      onActivity();
+    } catch (e) {
+      setError(errorMessage(e));
+    }
+  };
+
   const older = async () => {
     const first = messages.find((m) => !m.pending);
     if (!first) return;
@@ -159,15 +176,14 @@ function Thread({ id, conversation, onBack, onActivity }: { id: string; conversa
           const mine = m.sender_id === user?.id;
           const sender = conversation?.participants.find((p) => p.id === m.sender_id);
           return (
-            <div key={m.client_id} className={`flex ${mine ? "justify-end" : "justify-start"}`}>
-              <div className={`max-w-[80%] rounded-lg px-3 py-2 text-sm ${mine ? "bg-brand-700 text-white" : "bg-paper-sunk"} ${m.failed ? "ring-2 ring-red-400" : ""}`}>
-                {!mine && conversation?.kind === "team" && <p className="text-xs font-medium text-ink-soft">{sender?.display_name ?? "Former member"}</p>}
-                <p className="whitespace-pre-wrap break-words">{m.body}</p>
-                <p className={`mt-0.5 text-[10px] ${mine ? "text-white/70" : "text-ink-faint"}`}>
-                  {m.pending ? "sending…" : m.failed ? "not sent" : new Date(m.created_at).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
-                </p>
-              </div>
-            </div>
+            <MessageBubble
+              key={m.client_id}
+              m={m}
+              mine={mine}
+              senderName={!mine && conversation?.kind === "team" ? sender?.display_name ?? "Former member" : undefined}
+              onEdit={(text) => change(m, () => api.put<Message>(`/conversations/${id}/messages/${m.id}`, { body: text }))}
+              onDelete={() => change(m, () => api.del<Message>(`/conversations/${id}/messages/${m.id}`))}
+            />
           );
         })}
         <div ref={bottom} />

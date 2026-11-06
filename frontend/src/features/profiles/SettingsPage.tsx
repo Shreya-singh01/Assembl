@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { api, errorMessage } from "../../api/client";
 import type { User } from "../../api/types";
@@ -43,6 +43,7 @@ export function SettingsPage() {
     <div className="max-w-2xl space-y-6">
       <PageHeader title="Privacy & account" subtitle={`Signed in as ${user?.email}. Your e-mail is never shown to other students.`} />
       {error && <Alert tone="error">{error}</Alert>}
+      {user && <AccountCard user={user} onSaved={setUser} />}
       <Card className="p-5">
         <h2 className="font-semibold">Research participation</h2>
         <p className="mb-4 mt-1 text-sm text-ink-soft">
@@ -79,5 +80,49 @@ export function SettingsPage() {
         </div>
       </Dialog>
     </div>
+  );
+}
+
+function AccountCard({ user, onSaved }: { user: User; onSaved: (u: User) => void }) {
+  const [name, setName] = useState(user.display_name);
+  const [handle, setHandle] = useState(user.handle);
+  const [busy, setBusy] = useState(false);
+  const [msg, setMsg] = useState<{ tone: "success" | "error"; text: string } | null>(null);
+  const handleOk = /^[a-zA-Z0-9_]{3,24}$/.test(handle);
+  const changed = name.trim() !== user.display_name || handle !== user.handle;
+
+  const save = async (e: FormEvent) => {
+    e.preventDefault();
+    if (!name.trim()) return setMsg({ tone: "error", text: "Display name cannot be empty." });
+    if (!handleOk) return setMsg({ tone: "error", text: "Handles use 3–24 letters, digits or underscores." });
+    setBusy(true);
+    setMsg(null);
+    try {
+      onSaved(await api.put<User>("/auth/me", { display_name: name.trim(), handle }));
+      setMsg({ tone: "success", text: "Saved." });
+    } catch (err) {
+      setMsg({ tone: "error", text: errorMessage(err) });
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  return (
+    <Card className="p-5">
+      <h2 className="font-semibold">Name and handle</h2>
+      <p className="mb-4 mt-1 text-sm text-ink-soft">Shown to teams and in messages. Changing your handle means teammates need the new one to invite you.</p>
+      <form onSubmit={save} className="space-y-4" noValidate>
+        <div className="grid gap-4 sm:grid-cols-2">
+          <Field label="Display name">{(id) => <input id={id} className="input" maxLength={60} value={name} onChange={(e) => setName(e.target.value)} />}</Field>
+          <Field label="Handle" error={handle && !handleOk ? "3–24 letters, digits or underscores" : undefined}>
+            {(id) => <input id={id} className="input" maxLength={24} value={handle} onChange={(e) => setHandle(e.target.value)} />}
+          </Field>
+        </div>
+        {msg && <Alert tone={msg.tone}>{msg.text}</Alert>}
+        <div className="flex justify-end">
+          <Button type="submit" busy={busy} disabled={!changed}>Save changes</Button>
+        </div>
+      </form>
+    </Card>
   );
 }

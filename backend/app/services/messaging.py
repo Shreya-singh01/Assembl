@@ -16,7 +16,7 @@ from typing import Any
 from bson import ObjectId
 from pymongo.errors import DuplicateKeyError
 
-from app.core.errors import bad_request, not_found, oid
+from app.core.errors import bad_request, forbidden, not_found, oid
 from app.services.auth import now, user_brief
 from app.services.profiles import is_discoverable
 from app.services.projects import users_by_id
@@ -112,7 +112,54 @@ async def list_conversations(db, me: dict, limit: int = 50) -> list[dict]:
 def message_out(m: dict) -> dict[str, Any]:
     return {"id": str(m["_id"]), "conversation_id": str(m["conversation_id"]),
             "sender_id": str(m["sender_id"]) if m.get("sender_id") else None, "body": m["body"],
-            "created_at": m["created_at"], "client_id": m["client_id"]}
+            "created_at": m["created_at"], "client_id": m["client_id"],
+            "edited_at": m.get("edited_at"), "deleted": bool(m.get("deleted"))}
+
+
+def _preview(body: str) -> str:
+    return body if len(body) <= PREVIEW_CHARS else body[:PREVIEW_CHARS - 1] + "…"
+
+
+async def _own_message(db, me: dict, conversation_id: str, message_id: str) -> tuple[dict, dict]:
+    conv = await get_for_participant(db, me, conversation_id)
+    msg = await db.messages.find_one({"_id": oid(message_id, "Message"), "conversation_id": conv["_id"]})
+    if not msg:
+        raise not_found("Message")
+    if msg.get("sender_id") != me["_id"]:
+        raise forbidden("You can only change your own messages")
+    if msg.get("deleted"):
+        raise bad_request("This message was deleted")
+    return conv, msg
+
+
+async def _refresh_preview(db, conv: dict) -> None:
+    """Keep the conversation list preview in step with the latest message."""
+    last = await db.messages.find_one({"conversation_id": conv["_id"]}, sort=[("created_at", -1), ("_id", -1)])
+    preview = None if last is None else ("Message deleted" if last.get("deleted") else _preview(last["body"]))
+    await db.conversations.update_one({"_id": conv["_id"]}, {"$set": {"last_message_preview": preview}})
+
+
+async def edit_message(db, me: dict, conversation_id: str, message_id: str, body: str, max_chars: int) -> tuple[dict, dict]:
+    body = body.strip()
+    if not body:
+        raise bad_request("Message is empty")
+    if len(body) > max_chars:
+        raise bad_request(f"Messages are limited to {max_chars} characters")
+    conv, msg = await _own_message(db, me, conversation_id, message_id)
+    msg = await db.messages.find_one_and_update({"_id": msg["_id"]}, {"$set": {"body": body, "edited_at": now()}},
+                                                return_document=True)
+    await _refresh_preview(db, conv)
+    return message_out(msg), conv
+
+
+async def delete_message(db, me: dict, conversation_id: str, message_id: str) -> tuple[dict, dict]:
+    """Deletion removes the text permanently; a placeholder keeps the thread readable."""
+    conv, msg = await _own_message(db, me, conversation_id, message_id)
+    msg = await db.messages.find_one_and_update(
+        {"_id": msg["_id"]}, {"$set": {"body": "", "deleted": True, "deleted_at": now()}, "$unset": {"edited_at": ""}},
+        return_document=True)
+    await _refresh_preview(db, conv)
+    return message_out(msg), conv
 
 
 async def list_messages(db, me: dict, conversation_id: str, before: str | None, limit: int) -> list[dict]:
@@ -141,7 +188,7 @@ async def send_message(db, me: dict, conversation_id: str, body: str, client_id:
     except DuplicateKeyError:  # retried send: return the stored message
         msg = await db.messages.find_one({"conversation_id": conv["_id"], "sender_id": me["_id"], "client_id": client_id})
         return message_out(msg), conv
-    preview = body if len(body) <= PREVIEW_CHARS else body[:PREVIEW_CHARS - 1] + "…"
+    preview = _preview(body)
     await db.conversations.update_one(
         {"_id": conv["_id"]},
         {"$set": {"last_message_at": msg["created_at"], "last_message_preview": preview,

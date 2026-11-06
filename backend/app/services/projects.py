@@ -128,7 +128,17 @@ async def update_project(db, user: dict, project_id: str, data: ProjectUpdateIn)
     )
     if res is None:
         raise conflict("The project changed while you were editing it; reload and try again")
+    if doc["status"] == "open" and data.status == "closed":
+        await expire_pending_invitations(db, doc["_id"], "project_closed")
     return res
+
+
+async def expire_pending_invitations(db, project_id, reason: str) -> int:
+    """Expire every pending invitation and join request for a project
+    (it filled up or was closed). Returns how many were expired."""
+    res = await db.invitations.update_many({"project_id": project_id, "status": "pending"},
+                                           {"$set": {"status": "expired", "reason": reason, "responded_at": now()}})
+    return res.modified_count
 
 
 def is_member(doc: dict, user_id) -> bool:

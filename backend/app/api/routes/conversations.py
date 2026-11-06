@@ -5,7 +5,7 @@ from __future__ import annotations
 from fastapi import APIRouter, HTTPException, Query, Request, status
 
 from app.api.deps import CurrentUser, Db, SettingsDep
-from app.schemas.social import ConversationOut, MessageOut, SendMessageIn, StartConversationIn
+from app.schemas.social import ConversationOut, EditMessageIn, MessageOut, SendMessageIn, StartConversationIn
 from app.services import messaging
 
 router = APIRouter(prefix="/conversations", tags=["messaging"])
@@ -41,6 +41,23 @@ async def send_and_notify(app, db, user: dict, conversation_id: str, body: str, 
 async def send_message(conversation_id: str, data: SendMessageIn, request: Request, user: CurrentUser, db: Db,
                        settings: SettingsDep):
     return await send_and_notify(request.app, db, user, conversation_id, data.body, data.client_id)
+
+
+@router.put("/{conversation_id}/messages/{message_id}", response_model=MessageOut, responses={403: {}, 404: {}})
+async def edit_message(conversation_id: str, message_id: str, data: EditMessageIn, request: Request, user: CurrentUser,
+                       db: Db, settings: SettingsDep):
+    """Edit one of your own messages. Other participants see it marked as edited."""
+    msg, conv = await messaging.edit_message(db, user, conversation_id, message_id, data.body, settings.max_message_chars)
+    await request.app.state.notifier.to_users(conv["participant_ids"], "message:updated", msg)
+    return msg
+
+
+@router.delete("/{conversation_id}/messages/{message_id}", response_model=MessageOut, responses={403: {}, 404: {}})
+async def delete_message(conversation_id: str, message_id: str, request: Request, user: CurrentUser, db: Db):
+    """Delete one of your own messages. Its text is removed permanently."""
+    msg, conv = await messaging.delete_message(db, user, conversation_id, message_id)
+    await request.app.state.notifier.to_users(conv["participant_ids"], "message:updated", msg)
+    return msg
 
 
 @router.post("/{conversation_id}/read", status_code=204, responses={404: {}})

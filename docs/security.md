@@ -18,7 +18,7 @@
 - **Server-side enforcement:** every resource is checked on the server. Ids supplied by the client are never trusted.
 - **Unreadable resources look absent:** non-participants get **404** for conversations, private projects and hidden profiles, so ids can't be probed or enumerated. Malformed ids also return 404.
 - **Owner-only actions:** only the creator can view recommendations, edit, invite or remove members. Invitations are accepted only by the counterparty.
-- **Admin role:** `ADMIN_EMAILS` grants the admin role (research administration). Admins grant the rater role.
+- **Admin role:** granted to the e-mails listed in `backend/app/core/admins.py`, checked on every request (adding or removing an address there takes effect without re-registering). Admins grant the rater role.
 
 ## Rate limits
 - **Limits:** login per IP+e-mail (10 per 5 min), registration per IP, messages per user (30 per minute).

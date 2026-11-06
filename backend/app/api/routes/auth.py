@@ -6,7 +6,7 @@ from fastapi import APIRouter, HTTPException, Request, Response, status
 
 from app.api.deps import CurrentUser, Db, SettingsDep
 from app.core.config import Settings
-from app.schemas.auth import ConsentIn, DeleteAccountIn, LoginIn, RegisterIn, SessionOut, UserOut
+from app.schemas.auth import AccountUpdateIn, ConsentIn, DeleteAccountIn, LoginIn, RegisterIn, SessionOut, UserOut
 from app.services import account
 from app.services import auth as svc
 from app.services.profiles import completion
@@ -66,6 +66,13 @@ async def logout(user: CurrentUser, request: Request, response: Response, db: Db
 async def me(user: CurrentUser, request: Request, db: Db):
     return {"user": svc.user_out(user, await _profile_ready(db, user["_id"])),
             "csrf_token": request.state.session["csrf_token"]}
+
+
+@router.put("/me", response_model=UserOut, responses={409: {"description": "Handle already taken"}})
+async def update_me(data: AccountUpdateIn, user: CurrentUser, db: Db):
+    """Change your display name and/or handle."""
+    user = await svc.update_account(db, user, data.display_name, data.handle)
+    return svc.user_out(user, await _profile_ready(db, user["_id"]))
 
 
 @router.put("/consent", response_model=UserOut)

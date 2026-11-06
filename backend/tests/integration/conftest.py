@@ -6,6 +6,8 @@ Never points at a real database.
 from __future__ import annotations
 
 import itertools
+import os
+import uuid
 
 import httpx
 import pytest
@@ -19,18 +21,43 @@ from app.services.embeddings import HashingEncoder
 _counter = itertools.count()
 
 
+REAL_MONGO = os.environ.get("ASSEMBL_TEST_MONGODB_URL")
+
+
+@pytest.fixture(autouse=True)
+def test_admin(monkeypatch):
+    """Tests use admin@example.edu as an administrator in addition to the real list."""
+    from app.core import admins
+
+    monkeypatch.setattr(admins, "ADMIN_EMAILS", admins.ADMIN_EMAILS | {"admin@example.edu"})
+
+
 @pytest.fixture
 async def app_and_db():
-    client = AsyncMongoMockClient(tz_aware=True)
-    db = client[f"test_{next(_counter)}"]
-    await ensure_indexes(db, memory=True)
+    # Default: in-memory mock. Set ASSEMBL_TEST_MONGODB_URL to run the same tests
+    # against a real MongoDB; each test gets a throwaway database that is dropped.
+    if REAL_MONGO:
+        from motor.motor_asyncio import AsyncIOMotorClient
+
+        client = AsyncIOMotorClient(REAL_MONGO, tz_aware=True, serverSelectionTimeoutMS=10000)
+        db = client[f"assembl_test_{uuid.uuid4().hex[:10]}"]
+        await ensure_indexes(db, memory=False)
+    else:
+        client = AsyncMongoMockClient(tz_aware=True)
+        db = client[f"test_{next(_counter)}"]
+        await ensure_indexes(db, memory=True)
     settings = Settings(environment="test", mongodb_url="memory://", embedding_backend="hashing",
-                        cors_origins="http://localhost:5173", admin_emails="admin@example.edu",
+                        cors_origins="http://localhost:5173",
                         login_rate_limit=5, message_rate_limit=5)
     asgi = create_app(settings, encoder=HashingEncoder(), db=db)
     api = asgi.fastapi
-    async with api.router.lifespan_context(api):
-        yield asgi, db
+    try:
+        async with api.router.lifespan_context(api):
+            yield asgi, db
+    finally:
+        if REAL_MONGO:
+            await client.drop_database(db.name)
+            client.close()
 
 
 class Api:

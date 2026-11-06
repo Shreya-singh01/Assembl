@@ -31,9 +31,6 @@ class Settings(BaseSettings):
     # Comma-separated list of browser origins allowed to call the API.
     cors_origins: str = "http://localhost:5173"
 
-    # Accounts whose e-mail is listed here get the "admin" role (research dashboard).
-    admin_emails: str = ""
-
     # Embeddings
     embedding_backend: Literal["sbert", "hashing"] = "sbert"
     embedding_model: str = "sentence-transformers/all-MiniLM-L6-v2"
@@ -54,10 +51,6 @@ class Settings(BaseSettings):
     @property
     def cors_origin_list(self) -> list[str]:
         return [o.strip().rstrip("/") for o in self.cors_origins.split(",") if o.strip()]
-
-    @property
-    def admin_email_set(self) -> set[str]:
-        return {e.strip().lower() for e in self.admin_emails.split(",") if e.strip()}
 
     def check_production(self) -> list[str]:
         problems = []

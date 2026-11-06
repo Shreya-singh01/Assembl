@@ -283,6 +283,8 @@ export interface Message {
   body: string;
   created_at: string;
   client_id: string;
+  edited_at?: string | null;
+  deleted?: boolean;
   pending?: boolean;
   failed?: boolean;
 }

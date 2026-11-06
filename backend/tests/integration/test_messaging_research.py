@@ -63,7 +63,7 @@ async def test_research_judging_flow(make_client, db):
     assert r.status_code == 201
     sid = r.json()["imported"][0]
     st = (await admin.get("/api/v1/research/status")).json()
-    assert st["scenarios"]["synthetic"] == 30 and st["scenarios"]["real"] == 0
+    assert st["scenarios"]["synthetic"] == 60 and st["scenarios"]["real"] == 0
     assert (await admin.post(f"/api/v1/research/scenarios/{sid}/packet")).status_code == 200
 
     rater = await make_client().register("rater")

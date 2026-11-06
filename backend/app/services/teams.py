@@ -26,7 +26,7 @@ from app.core.errors import bad_request, conflict, forbidden, not_found, oid
 from app.services import messaging
 from app.services.auth import now, user_brief
 from app.services.profiles import is_discoverable
-from app.services.projects import get_project_for, is_member, users_by_id
+from app.services.projects import expire_pending_invitations, get_project_for, is_member, users_by_id
 from app.websocket.notifier import Notifier
 
 
@@ -153,7 +153,7 @@ async def respond(db, notifier: Notifier, user: dict, invitation_id: str,
     result = await _finish(db, inv, "accepted", None)
     await messaging.sync_team_conversation(db, joined)
     if joined["open_positions"] == 0:
-        await _expire_pending(db, joined["_id"], "team_full")
+        await expire_pending_invitations(db, joined["_id"], "team_full")
     members = [m["user_id"] for m in joined["members"]]
     await notifier.to_users(set(members) | parties - {None}, "team:update",
                             {"project_id": str(joined["_id"]), "event": "joined", "user_id": str(cand)})
@@ -165,11 +165,6 @@ async def _finish(db, inv: dict, status: str, reason: str | None) -> dict:
     return await db.invitations.find_one_and_update(
         {"_id": inv["_id"]}, {"$set": {"status": status, "reason": reason, "responded_at": now()}},
         return_document=True)
-
-
-async def _expire_pending(db, project_id, reason: str) -> None:
-    await db.invitations.update_many({"project_id": project_id, "status": "pending"},
-                                     {"$set": {"status": "expired", "reason": reason, "responded_at": now()}})
 
 
 async def remove_member(db, notifier: Notifier, user: dict, project_id: str, member_id: str) -> dict:

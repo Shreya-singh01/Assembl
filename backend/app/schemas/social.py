@@ -53,6 +53,10 @@ class SendMessageIn(Strict):
     client_id: Annotated[str, StringConstraints(pattern=r"^[A-Za-z0-9_-]{8,64}$")] | None = None
 
 
+class EditMessageIn(Strict):
+    body: Annotated[str, StringConstraints(strip_whitespace=True, min_length=1, max_length=4000)]
+
+
 class MessageOut(BaseModel):
     id: str
     conversation_id: str
@@ -60,6 +64,8 @@ class MessageOut(BaseModel):
     body: str
     created_at: datetime
     client_id: str
+    edited_at: datetime | None = None
+    deleted: bool = False
 
 
 class ConversationOut(BaseModel):
